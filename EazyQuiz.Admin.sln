@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scr", "scr", "{92E79236-CFE5-4217-AA19-023FD925B9BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EazyQuiz.Admin.Desktop", "src\EazyQuiz.Desktop.Admin\EazyQuiz.Admin.Desktop.csproj", "{EAF6D66E-4E66-48FF-854C-DBE891390755}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{2C251E0E-DA73-4D74-9541-0DFF5D994AC9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EazyQuiz.Cryptography", "..\EazyQuiz.Backend\src\EazyQuiz.Cryptography\EazyQuiz.Cryptography.csproj", "{68614AF1-440C-484B-A051-F3920CB65855}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EazyQuiz.Extensions", "..\EazyQuiz.Backend\src\EazyQuiz.Extensions\EazyQuiz.Extensions.csproj", "{E35DC4DE-2A3E-43CC-A84B-FC4A50D45258}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EazyQuiz.Models.DTO", "..\EazyQuiz.Backend\src\EazyQuiz.Models.DTO\EazyQuiz.Models.DTO.csproj", "{585C0373-98DF-4494-B95B-B39932FDE079}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{64720BAC-729E-490F-9131-32CC074F6123}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		global.json = global.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EAF6D66E-4E66-48FF-854C-DBE891390755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAF6D66E-4E66-48FF-854C-DBE891390755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAF6D66E-4E66-48FF-854C-DBE891390755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAF6D66E-4E66-48FF-854C-DBE891390755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68614AF1-440C-484B-A051-F3920CB65855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68614AF1-440C-484B-A051-F3920CB65855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68614AF1-440C-484B-A051-F3920CB65855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68614AF1-440C-484B-A051-F3920CB65855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E35DC4DE-2A3E-43CC-A84B-FC4A50D45258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E35DC4DE-2A3E-43CC-A84B-FC4A50D45258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E35DC4DE-2A3E-43CC-A84B-FC4A50D45258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E35DC4DE-2A3E-43CC-A84B-FC4A50D45258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585C0373-98DF-4494-B95B-B39932FDE079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585C0373-98DF-4494-B95B-B39932FDE079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585C0373-98DF-4494-B95B-B39932FDE079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585C0373-98DF-4494-B95B-B39932FDE079}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EAF6D66E-4E66-48FF-854C-DBE891390755} = {92E79236-CFE5-4217-AA19-023FD925B9BA}
+		{68614AF1-440C-484B-A051-F3920CB65855} = {2C251E0E-DA73-4D74-9541-0DFF5D994AC9}
+		{E35DC4DE-2A3E-43CC-A84B-FC4A50D45258} = {2C251E0E-DA73-4D74-9541-0DFF5D994AC9}
+		{585C0373-98DF-4494-B95B-B39932FDE079} = {2C251E0E-DA73-4D74-9541-0DFF5D994AC9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04CE4BFF-34D4-4AB6-B4C3-6D2961141DA2}
+	EndGlobalSection
+EndGlobal
