@@ -1,6 +1,8 @@
 using EazyQuiz.Cryptography;
 using EazyQuiz.Models.DTO;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
+using System.Net.Http.Json;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
@@ -187,5 +189,31 @@ public class ApiProvider : IDisposable
     {
         _client.Dispose();
         GC.SuppressFinalize(this);
+    }
+
+    internal async Task<List<UserQuestionResponse>> GetUsersQuestionsByFilter(UserQuestionFilter filter, string token)
+    {
+
+        var query = new Dictionary<string, string?>
+        {
+            ["Status"] = filter.Status,
+            ["PageSize"] = filter.PageSize.ToString(),
+            ["PageNumber"] = filter.PageNumber.ToString(),
+        };
+
+        string uri = QueryHelpers.AddQueryString($"{_baseAdress}/api/ManageUserQuestions", query);
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri($"{_baseAdress}/api/ManageUserQuestions"),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {token}");
+
+        var response = await _client.SendAsync(request);
+
+        return await response.Content.ReadFromJsonAsync<List<UserQuestionResponse>>() ?? new List<UserQuestionResponse>();
+
+
     }
 }
