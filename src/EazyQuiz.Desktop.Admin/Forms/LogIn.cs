@@ -43,8 +43,8 @@ public partial class LogIn : Form
         }
 
         _userToken.User = await _apiProvider.Authtenticate(username, password);
-
         _formFactory.Create<Panel>().Open();
+        Hide();
     }
 
     /// Действия при нажатии кнопки "Регистрация"

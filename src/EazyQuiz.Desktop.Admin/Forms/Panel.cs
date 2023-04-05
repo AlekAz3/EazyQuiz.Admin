@@ -10,10 +10,12 @@ public partial class Panel : Form
 {
     /// <inheritdoc cref="ApiProvider"/>
     private readonly ApiProvider _apiProvider;
+    private readonly IFormFactory _formFactory;
 
-    public Panel(ApiProvider apiProvider)
+    public Panel(ApiProvider apiProvider, IFormFactory formFactory)
     {
         _apiProvider = apiProvider;
+        _formFactory = formFactory;
         InitializeComponent();
     }
 
@@ -74,5 +76,11 @@ public partial class Panel : Form
             }
         }
 
+    }
+
+    private void ShowManageUserQuestion(object sender, EventArgs e)
+    {
+        _formFactory.Create<ManageUsersQuestionPanel>().Open();
+        Close();
     }
 }

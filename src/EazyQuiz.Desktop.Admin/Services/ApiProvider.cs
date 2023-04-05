@@ -143,19 +143,7 @@ public class ApiProvider : IDisposable
         };
 
         var response = await _client.SendAsync(request);
-
-        var responseBody = await response.Content.ReadAsStringAsync();
-
-        if (responseBody == null)
-        {
-            throw new ArgumentNullException(paramName: nameof(userName));
-        }
-
-        if (responseBody == "true")
-        {
-            return true;
-        }
-        return false;
+        return response.StatusCode != System.Net.HttpStatusCode.NotFound;
     }
 
     /// <summary>

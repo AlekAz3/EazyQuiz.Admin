@@ -22,8 +22,7 @@ internal static class Program
                      })
                      .Build();
 
-        var services = host.Services;
-        var mainForm = services.GetRequiredService<LogIn>();
+        var mainForm = host.Services.GetRequiredService<LogIn>();
         Application.Run(mainForm);
     }
 

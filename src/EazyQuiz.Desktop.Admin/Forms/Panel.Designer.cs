@@ -43,6 +43,7 @@ partial class Panel
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.UsersQuestionButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // QuestionInput
@@ -191,11 +192,23 @@ partial class Panel
             this.label5.TabIndex = 14;
             this.label5.Text = "Введите четверный ответ";
             // 
+            // UsersQuestionButton
+            // 
+            this.UsersQuestionButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UsersQuestionButton.Location = new System.Drawing.Point(47, 588);
+            this.UsersQuestionButton.Name = "UsersQuestionButton";
+            this.UsersQuestionButton.Size = new System.Drawing.Size(394, 39);
+            this.UsersQuestionButton.TabIndex = 15;
+            this.UsersQuestionButton.Text = "Предложенные вопросы от пользотвателей";
+            this.UsersQuestionButton.UseVisualStyleBackColor = true;
+            this.UsersQuestionButton.Click += new System.EventHandler(this.ShowManageUserQuestion);
+            // 
             // Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 604);
+            this.ClientSize = new System.Drawing.Size(485, 639);
+            this.Controls.Add(this.UsersQuestionButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -235,4 +248,5 @@ partial class Panel
     private Label label3;
     private Label label4;
     private Label label5;
+    private Button UsersQuestionButton;
 }
