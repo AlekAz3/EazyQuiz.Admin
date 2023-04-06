@@ -40,7 +40,7 @@ internal static class Program
             services.AddTransient(form);
         });
 
-        services.AddSingleton<ApiProvider>();
+        services.AddTransient<ApiProvider>();
         services.AddSingleton<UserToken>();
     }
 }

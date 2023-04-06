@@ -21,7 +21,9 @@ public partial class LogIn : Form
         InitializeComponent();
     }
 
+    ///<summary>
     /// Открытие окна
+    /// </summary>
     internal void Open()
     {
         if (!Application.OpenForms.OfType<LogIn>().Any())
@@ -29,8 +31,9 @@ public partial class LogIn : Form
             Show();
         }
     }
-
+    /// <summary>
     /// Действия при нажатии кнопки "Вход"
+    /// </summary>
     private async void EnterButtonClick(object sender, EventArgs e)
     {
         string username = UsernameInput.Text;
