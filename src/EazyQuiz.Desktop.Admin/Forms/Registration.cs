@@ -7,19 +7,11 @@ namespace EazyQuiz.Desktop.Admin;
 /// </summary>
 public partial class Registration : Form
 {
-    /// <summary>
-    /// <inheritdoc cref="IFormFactory/>
-    /// </summary>
-    private readonly IFormFactory _formFactory;
-
-    /// <summary>
     /// <inheritdoc cref="ApiProvider/>
-    /// </summary>
     private readonly ApiProvider _apiProvider;
 
-    public Registration(IFormFactory formFactory, ApiProvider apiProvider)
+    public Registration(ApiProvider apiProvider)
     {
-        _formFactory = formFactory;
         _apiProvider = apiProvider;
         InitializeComponent();
         GenderInput.SelectedIndex = 0;

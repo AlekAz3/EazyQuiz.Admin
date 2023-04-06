@@ -2,18 +2,27 @@ using EazyQuiz.Models.DTO;
 
 namespace EazyQuiz.Desktop.Admin;
 
+/// <summary>
+/// Форма управления вопросами предложенных пользователями
+/// </summary>
 public partial class ManageUsersQuestionPanel : Form
 {
-    private readonly UserToken _user;
+    /// <inheritdoc cref="ApiProvider"/>
     private readonly ApiProvider _apiProvider;
 
-    private List<UserQuestionResponse> list { get; set; }
+    /// <inheritdoc cref="IFormFactory"/>
+    private readonly IFormFactory _formFactory;
 
-    public ManageUsersQuestionPanel(UserToken user, ApiProvider apiProvider)
+    /// <summary>
+    /// Список предложенных пользователями ответов
+    /// </summary>
+    private List<UserQuestionResponse>? UsersQuestions { get; set; }
+
+    public ManageUsersQuestionPanel(ApiProvider apiProvider, IFormFactory formFactory)
     {
         InitializeComponent();
-        _user = user;
         _apiProvider = apiProvider;
+        _formFactory = formFactory;
     }
 
     /// <summary>
@@ -22,18 +31,114 @@ public partial class ManageUsersQuestionPanel : Form
     public void Open()
     {
         Show();
+        Task.Run(async () => { await RefreshList(); });
     }
 
-    private async void ManageUsersQuestionPanelLoad(object sender, EventArgs e)
+    /// <summary>
+    /// Загрузка формы 
+    /// </summary>
+    private async void FormLoadEvent(object sender, EventArgs e)
     {
-        list = await _apiProvider.GetUsersQuestionsByFilter(new UserQuestionFilter() { Status = "Новый" }, _user.User.Token ?? "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImI5MWU1MGMwLWMxZWYtNDg2MS1hNmYzLWFkYzg2NDdhNGU2OCIsImV4cCI6MTY4MDgwNjA1MiwiaXNzIjoiU2VydmVyIiwiYXVkIjoiVW5pdHkifQ.NSHT8Qd0We_cgdpVur8X-Tv1jZRI6DrBzUTnZnijv4VUi_zESbPYIeD9XwSeJ7-VpjVvld9HyZFmedTj4S74FQ");
-        listBox1.DisplayMember = nameof(UserQuestionResponse.QuestionText);
-        listBox1.ValueMember = nameof(UserQuestionResponse.Id);
-        listBox1.DataSource = list;
+        await RefreshList();
+        usersQuestionsList.SelectedIndex = 0;
     }
 
-    private void listBox1_SelectedValueChanged(object sender, EventArgs e)
+    /// <summary>
+    /// Переключение между вопросами
+    /// </summary>
+    private void SelectUserQuestion(object sender, EventArgs e)
     {
-        var a = (UserQuestionResponse)listBox1.SelectedItem;
+        var selectedQuestion = (UserQuestionResponse)usersQuestionsList.SelectedItem;
+
+        if (selectedQuestion is null)
+        {
+            return;
+        }
+        questionTextLabel.Text = selectedQuestion.QuestionText;
+        answerTextLabel.Text = selectedQuestion.AnswerText;
+    }
+
+    /// <summary>
+    /// Обновить список вопросов 
+    /// </summary>
+    private async Task RefreshList()
+    {
+        UsersQuestions = await _apiProvider.GetUsersQuestionsByFilter(new UserQuestionFilter() { Status = "Новый" });
+
+        usersQuestionsList.Items.Clear();
+        usersQuestionsList.DisplayMember = nameof(UserQuestionResponse.QuestionText);
+        usersQuestionsList.ValueMember = nameof(UserQuestionResponse.Id);
+        foreach (var item in UsersQuestions)
+        {
+            usersQuestionsList.Items.Add(item);
+        }
+    }
+
+    /// <summary>
+    /// Предложенный вопрос принят
+    /// </summary>
+    private void AcceptQuestionClick(object sender, EventArgs e)
+    {
+        var selectedQuestion = (UserQuestionResponse)usersQuestionsList.SelectedItem;
+        if (selectedQuestion is null)
+        {
+            return;
+        }
+
+        selectedQuestion.Status = "Принято";
+
+        var a = _formFactory.Create<Panel>();
+#pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
+        a.FormClosing += FormLoadEvent;
+#pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
+        a.ShowWithUsersQuestion(selectedQuestion);
+    }
+
+    /// <summary>
+    /// Предложенный вопрос не принят
+    /// </summary>
+    private async void DenyQuestionClick(object sender, EventArgs e)
+    {
+        var choice = MessageBox.Show("Вы уверены?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        var selectedQuestion = (UserQuestionResponse)usersQuestionsList.SelectedItem;
+
+        if (selectedQuestion is null)
+        {
+            return;
+        }
+        if (choice == DialogResult.Yes)
+        {
+            selectedQuestion.Status = "Отклонено";
+            await _apiProvider.UpdateUsersQuestionStatus(selectedQuestion);
+        }
+        await RefreshList();
+    }
+
+    /// <summary>
+    /// Закрытие формы закраивает всю программу
+    /// </summary>
+    private void FormClosingEvent(object sender, FormClosedEventArgs e)
+    {
+        Application.Exit();
+    }
+
+    /// <summary>
+    /// Кнопка обновления списка вопросов от пользователей  
+    /// </summary>
+    private async void RefreshListClick(object sender, EventArgs e)
+    {
+        await RefreshList();
+    }
+
+    /// <summary>
+    /// Кнопка возвращение к форме добавления вопроса
+    /// </summary>
+    private void ExitButtonClick(object sender, EventArgs e)
+    {
+#pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
+        FormClosed -= FormClosingEvent;
+#pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
+        _formFactory.Create<Panel>().Open();
+        Close();
     }
 }

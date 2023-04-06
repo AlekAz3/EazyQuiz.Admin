@@ -28,79 +28,115 @@ partial class ManageUsersQuestionPanel
     /// </summary>
     private void InitializeComponent()
     {
-        listBox1 = new ListBox();
-        richTextBox1 = new RichTextBox();
-        richTextBox2 = new RichTextBox();
-        comboBox1 = new ComboBox();
-        button1 = new Button();
-        SuspendLayout();
-        // 
-        // listBox1
-        // 
-        listBox1.FormattingEnabled = true;
-        listBox1.ItemHeight = 15;
-        listBox1.Location = new Point(12, 12);
-        listBox1.Name = "listBox1";
-        listBox1.Size = new Size(372, 409);
-        listBox1.TabIndex = 0;
-        listBox1.SelectedValueChanged += listBox1_SelectedValueChanged;
-        // 
-        // richTextBox1
-        // 
-        richTextBox1.Location = new Point(452, 33);
-        richTextBox1.Name = "richTextBox1";
-        richTextBox1.Size = new Size(283, 64);
-        richTextBox1.TabIndex = 1;
-        richTextBox1.Text = "";
-        // 
-        // richTextBox2
-        // 
-        richTextBox2.Location = new Point(452, 129);
-        richTextBox2.Name = "richTextBox2";
-        richTextBox2.Size = new Size(283, 64);
-        richTextBox2.TabIndex = 2;
-        richTextBox2.Text = "";
-        // 
-        // comboBox1
-        // 
-        comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-        comboBox1.FormattingEnabled = true;
-        comboBox1.Items.AddRange(new object[] { "�����", "������", "��������" });
-        comboBox1.Location = new Point(452, 209);
-        comboBox1.Name = "comboBox1";
-        comboBox1.Size = new Size(283, 23);
-        comboBox1.TabIndex = 3;
-        // 
-        // button1
-        // 
-        button1.Location = new Point(452, 267);
-        button1.Name = "button1";
-        button1.Size = new Size(290, 50);
-        button1.TabIndex = 4;
-        button1.Text = "button1";
-        button1.UseVisualStyleBackColor = true;
-        // 
-        // ManageUsersQuestionPanel
-        // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
-        AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(747, 450);
-        Controls.Add(button1);
-        Controls.Add(comboBox1);
-        Controls.Add(richTextBox2);
-        Controls.Add(richTextBox1);
-        Controls.Add(listBox1);
-        Name = "ManageUsersQuestionPanel";
-        Text = "ManageUsersQuestion";
-        Load += ManageUsersQuestionPanelLoad;
-        ResumeLayout(false);
+            this.usersQuestionsList = new System.Windows.Forms.ListBox();
+            this.questionTextLabel = new System.Windows.Forms.RichTextBox();
+            this.answerTextLabel = new System.Windows.Forms.RichTextBox();
+            this.acceptButton = new System.Windows.Forms.Button();
+            this.denyDutton = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // usersQuestionsList
+            // 
+            this.usersQuestionsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.usersQuestionsList.FormattingEnabled = true;
+            this.usersQuestionsList.ItemHeight = 18;
+            this.usersQuestionsList.Location = new System.Drawing.Point(12, 35);
+            this.usersQuestionsList.Name = "usersQuestionsList";
+            this.usersQuestionsList.Size = new System.Drawing.Size(372, 400);
+            this.usersQuestionsList.TabIndex = 0;
+            this.usersQuestionsList.SelectedValueChanged += new System.EventHandler(this.SelectUserQuestion);
+            // 
+            // questionTextLabel
+            // 
+            this.questionTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.questionTextLabel.Location = new System.Drawing.Point(419, 35);
+            this.questionTextLabel.Name = "questionTextLabel";
+            this.questionTextLabel.ReadOnly = true;
+            this.questionTextLabel.Size = new System.Drawing.Size(283, 145);
+            this.questionTextLabel.TabIndex = 1;
+            this.questionTextLabel.Text = "";
+            // 
+            // answerTextLabel
+            // 
+            this.answerTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.answerTextLabel.Location = new System.Drawing.Point(419, 196);
+            this.answerTextLabel.Name = "answerTextLabel";
+            this.answerTextLabel.ReadOnly = true;
+            this.answerTextLabel.Size = new System.Drawing.Size(283, 81);
+            this.answerTextLabel.TabIndex = 2;
+            this.answerTextLabel.Text = "";
+            // 
+            // acceptButton
+            // 
+            this.acceptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.acceptButton.Location = new System.Drawing.Point(419, 318);
+            this.acceptButton.Name = "acceptButton";
+            this.acceptButton.Size = new System.Drawing.Size(283, 50);
+            this.acceptButton.TabIndex = 4;
+            this.acceptButton.Text = "Принять";
+            this.acceptButton.UseVisualStyleBackColor = true;
+            this.acceptButton.Click += new System.EventHandler(this.AcceptQuestionClick);
+            // 
+            // denyDutton
+            // 
+            this.denyDutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.denyDutton.Location = new System.Drawing.Point(419, 390);
+            this.denyDutton.Name = "denyDutton";
+            this.denyDutton.Size = new System.Drawing.Size(283, 50);
+            this.denyDutton.TabIndex = 5;
+            this.denyDutton.Text = "Отклонить";
+            this.denyDutton.UseVisualStyleBackColor = true;
+            this.denyDutton.Click += new System.EventHandler(this.DenyQuestionClick);
+            // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(627, 6);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshButton.TabIndex = 6;
+            this.refreshButton.Text = "Обновить";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.RefreshListClick);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Location = new System.Drawing.Point(12, 6);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 7;
+            this.exitButton.Text = "Выйти";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.ExitButtonClick);
+            // 
+            // ManageUsersQuestionPanel
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(721, 450);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.refreshButton);
+            this.Controls.Add(this.denyDutton);
+            this.Controls.Add(this.acceptButton);
+            this.Controls.Add(this.answerTextLabel);
+            this.Controls.Add(this.questionTextLabel);
+            this.Controls.Add(this.usersQuestionsList);
+            this.Name = "ManageUsersQuestionPanel";
+            this.Text = "Предложенные вопросы от пользователей";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosingEvent);
+            this.Load += new System.EventHandler(this.FormLoadEvent);
+            this.ResumeLayout(false);
+
     }
 
     #endregion
 
-    private ListBox listBox1;
-    private RichTextBox richTextBox1;
-    private RichTextBox richTextBox2;
-    private ComboBox comboBox1;
-    private Button button1;
+    private ListBox usersQuestionsList;
+    private RichTextBox questionTextLabel;
+    private RichTextBox answerTextLabel;
+    private Button acceptButton;
+    private Button denyDutton;
+    private Button refreshButton;
+    private Button exitButton;
 }

@@ -22,7 +22,7 @@ internal static class Program
                      })
                      .Build();
 
-        var mainForm = host.Services.GetRequiredService<ManageUsersQuestionPanel>();
+        var mainForm = host.Services.GetRequiredService<LogIn>();
         Application.Run(mainForm);
     }
 

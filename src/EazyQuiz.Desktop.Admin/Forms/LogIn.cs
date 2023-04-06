@@ -31,6 +31,7 @@ public partial class LogIn : Form
             Show();
         }
     }
+
     /// <summary>
     /// Действия при нажатии кнопки "Вход"
     /// </summary>
@@ -50,7 +51,9 @@ public partial class LogIn : Form
         Hide();
     }
 
+    /// <summary>
     /// Действия при нажатии кнопки "Регистрация"
+    /// </summary>
     private void RegistrationButtonClick(object sender, EventArgs e)
     {
         _formFactory.Create<Registration>().Open();

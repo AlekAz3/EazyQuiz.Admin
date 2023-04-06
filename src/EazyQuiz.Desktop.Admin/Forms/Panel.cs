@@ -10,7 +10,12 @@ public partial class Panel : Form
 {
     /// <inheritdoc cref="ApiProvider"/>
     private readonly ApiProvider _apiProvider;
+
+    /// <inheritdoc cref="IFormFactory"/>
     private readonly IFormFactory _formFactory;
+
+    /// <inheritdoc cref="UserQuestionResponse"/>
+    private UserQuestionResponse UserQuestionSelected { get; set; }
 
     public Panel(ApiProvider apiProvider, IFormFactory formFactory)
     {
@@ -65,7 +70,15 @@ public partial class Panel : Form
                 },
             }
         };
+
+        if (UserQuestionSelected is not null)
+        {
+            UserQuestionSelected.Status = "Принято";
+            await _apiProvider.UpdateUsersQuestionStatus(UserQuestionSelected);
+        }
+
         await _apiProvider.SendNewQuestion(question);
+
         MessageBox.Show("Вопрос отправлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         foreach (Control c in Controls)
@@ -75,9 +88,29 @@ public partial class Panel : Form
                 c.Text = string.Empty;
             }
         }
-
+        if (UserQuestionSelected is not null)
+        {
+            Close();
+        }
     }
 
+    /// <summary>
+    /// Открыть форму для добавления предложенного пользователем вопроса
+    /// </summary>
+    /// <param name="userQuestion">Предложенный пользователем вопрос</param>
+    public void ShowWithUsersQuestion(UserQuestionResponse userQuestion)
+    {
+        UserQuestionSelected = userQuestion;
+        UsersQuestionButton.Hide();
+        QuestionInput.Text = userQuestion.QuestionText;
+        FirstAnswerInput.Text = userQuestion.AnswerText;
+        IsFirstAnswerCorrect.Checked = true;
+        Show();
+    }
+
+    /// <summary>
+    /// Переход к форме <see cref="ManageUsersQuestionPanel"/>
+    /// </summary>
     private void ShowManageUserQuestion(object sender, EventArgs e)
     {
         _formFactory.Create<ManageUsersQuestionPanel>().Open();
