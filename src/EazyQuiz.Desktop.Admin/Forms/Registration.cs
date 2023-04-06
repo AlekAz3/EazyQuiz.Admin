@@ -7,19 +7,11 @@ namespace EazyQuiz.Desktop.Admin;
 /// </summary>
 public partial class Registration : Form
 {
-    /// <summary>
-    /// <inheritdoc cref="IFormFactory/>
-    /// </summary>
-    private readonly IFormFactory _formFactory;
-
-    /// <summary>
     /// <inheritdoc cref="ApiProvider/>
-    /// </summary>
     private readonly ApiProvider _apiProvider;
 
-    public Registration(IFormFactory formFactory, ApiProvider apiProvider)
+    public Registration(ApiProvider apiProvider)
     {
-        _formFactory = formFactory;
         _apiProvider = apiProvider;
         InitializeComponent();
         GenderInput.SelectedIndex = 0;
@@ -31,16 +23,13 @@ public partial class Registration : Form
     /// </summary>
     public void Open()
     {
-        if (!Application.OpenForms.OfType<Registration>().Any())
-        {
-            Show();
-        }
+        Show();
     }
 
     /// <summary>
     /// Действия при нажатии кнопки "Зарегистрироваться"
     /// </summary>
-    private void RegisterButtonClick(object sender, EventArgs e)
+    private async void RegisterButtonClick(object sender, EventArgs e)
     {
         string password = PasswordInput.Text;
         string passwordVerify = PasswordVerifyInput.Text;
@@ -66,14 +55,14 @@ public partial class Registration : Form
             MessageBox.Show("Неверный поле возраст", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
-        if (_apiProvider.CheckUsername(username))
+        if (await _apiProvider.CheckUsername(username))
         {
             MessageBox.Show("Ник уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
 #pragma warning disable CS8604 // Possible null reference argument.
-        Task.Run(() => { return _apiProvider.Registrate(password, username, age, gender, country); });
+        await Task.Run(() => { return _apiProvider.Registrate(password, username, age, gender, country); });
 #pragma warning restore CS8604 // Possible null reference argument.
 
         MessageBox.Show("Регистрация прошла успешно");
@@ -86,6 +75,5 @@ public partial class Registration : Form
     private void EnterButtonClick(object sender, EventArgs e)
     {
         Close();
-        _formFactory.Create<LogIn>().Open();
     }
 }

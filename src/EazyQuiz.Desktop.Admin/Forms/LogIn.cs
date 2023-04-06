@@ -21,7 +21,9 @@ public partial class LogIn : Form
         InitializeComponent();
     }
 
+    ///<summary>
     /// Открытие окна
+    /// </summary>
     internal void Open()
     {
         if (!Application.OpenForms.OfType<LogIn>().Any())
@@ -30,7 +32,9 @@ public partial class LogIn : Form
         }
     }
 
+    /// <summary>
     /// Действия при нажатии кнопки "Вход"
+    /// </summary>
     private async void EnterButtonClick(object sender, EventArgs e)
     {
         string username = UsernameInput.Text;
@@ -43,11 +47,13 @@ public partial class LogIn : Form
         }
 
         _userToken.User = await _apiProvider.Authtenticate(username, password);
-
         _formFactory.Create<Panel>().Open();
+        Hide();
     }
 
+    /// <summary>
     /// Действия при нажатии кнопки "Регистрация"
+    /// </summary>
     private void RegistrationButtonClick(object sender, EventArgs e)
     {
         _formFactory.Create<Registration>().Open();

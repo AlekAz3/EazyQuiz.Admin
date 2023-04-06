@@ -1,6 +1,8 @@
 using EazyQuiz.Cryptography;
 using EazyQuiz.Models.DTO;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
+using System.Net.Http.Json;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
@@ -12,14 +14,13 @@ namespace EazyQuiz.Desktop.Admin;
 /// </summary>
 public class ApiProvider : IDisposable
 {
-    /// <summary>
     /// <inheritdoc cref="IConfiguration"/>
-    /// </summary>
     private readonly IConfiguration _config;
 
-    /// <summary>
+    /// <inheritdoc cref="UserToken"/>
+    private readonly UserToken _user;
+
     /// <inheritdoc cref="HttpClient"/>
-    /// </summary>
     private readonly HttpClient _client;
 
     /// <summary>
@@ -27,9 +28,10 @@ public class ApiProvider : IDisposable
     /// </summary>
     private readonly string _baseAdress;
 
-    public ApiProvider(IConfiguration config)
+    public ApiProvider(IConfiguration config, UserToken user)
     {
         _config = config;
+        _user = user;
         _baseAdress = _config["EazyQuizApiUrl"];
         _client = new HttpClient();
     }
@@ -143,33 +145,22 @@ public class ApiProvider : IDisposable
         };
 
         var response = await _client.SendAsync(request);
-
-        var responseBody = await response.Content.ReadAsStringAsync();
-
-        if (responseBody == null)
-        {
-            throw new ArgumentNullException(paramName: nameof(userName));
-        }
-
-        if (responseBody == "true")
-        {
-            return true;
-        }
-        return false;
+        return response.StatusCode != System.Net.HttpStatusCode.NotFound;
     }
 
     /// <summary>
     /// Получить вопрос и ответы с сервера
     /// </summary>
-    public async Task<QuestionWithAnswers> GetQuestion(string token)
+    public async Task<QuestionWithAnswers> GetQuestion()
     {
         var request = new HttpRequestMessage
         {
             Method = HttpMethod.Get,
             RequestUri = new Uri($"{_baseAdress}/api/Questions/GetQuestion"),
         };
+
         request.Headers.TryAddWithoutValidation("Accept", "application/json");
-        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {token}");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
 
         var response = await _client.SendAsync(request);
 
@@ -192,6 +183,9 @@ public class ApiProvider : IDisposable
             RequestUri = new Uri($"{_baseAdress}/api/Questions/Add"),
             Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
         };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+
         var response = await _client.SendAsync(request);
     }
 
@@ -199,5 +193,51 @@ public class ApiProvider : IDisposable
     {
         _client.Dispose();
         GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    /// Получить список предложенных вопросов от пользователей
+    /// </summary>
+    /// <param name="filter">Фильтр</param>
+    /// <returns>Коллекцию вопросов в <see cref="UserQuestionResponse"/></returns>
+    public async Task<List<UserQuestionResponse>> GetUsersQuestionsByFilter(UserQuestionFilter filter)
+    {
+        var query = new Dictionary<string, string?>
+        {
+            ["Status"] = filter.Status,
+        };
+
+        string uri = QueryHelpers.AddQueryString($"{_baseAdress}/api/ManageUserQuestions", query);
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri(uri),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+
+        var response = await _client.SendAsync(request);
+
+        return await response.Content.ReadFromJsonAsync<List<UserQuestionResponse>>() ?? new List<UserQuestionResponse>();
+    }
+
+    /// <summary>
+    /// Обновить статус пользовательского вопроса 
+    /// </summary>
+    /// <param name="userQuestionResponse">Вопрос с обновлённым статусом</param>
+    public async Task UpdateUsersQuestionStatus(UserQuestionResponse userQuestionResponse)
+    {
+        string json = JsonSerializer.Serialize(userQuestionResponse);
+
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Put,
+            RequestUri = new Uri($"{_baseAdress}/api/ManageUserQuestions"),
+            Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+
+        var response = await _client.SendAsync(request);
     }
 }

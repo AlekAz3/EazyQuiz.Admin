@@ -22,8 +22,7 @@ internal static class Program
                      })
                      .Build();
 
-        var services = host.Services;
-        var mainForm = services.GetRequiredService<LogIn>();
+        var mainForm = host.Services.GetRequiredService<LogIn>();
         Application.Run(mainForm);
     }
 
@@ -41,7 +40,7 @@ internal static class Program
             services.AddTransient(form);
         });
 
-        services.AddSingleton<ApiProvider>();
+        services.AddTransient<ApiProvider>();
         services.AddSingleton<UserToken>();
     }
 }
