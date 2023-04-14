@@ -87,7 +87,7 @@ public partial class ManageUsersQuestionPanel : Form
 
         selectedQuestion.Status = "Принято";
 
-        var a = _formFactory.Create<Panel>();
+        var a = _formFactory.Create<AddQuestionPanel>();
 #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
         a.FormClosing += FormLoadEvent;
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
@@ -138,7 +138,7 @@ public partial class ManageUsersQuestionPanel : Form
 #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
         FormClosed -= FormClosingEvent;
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
-        _formFactory.Create<Panel>().Open();
+        _formFactory.Create<AddQuestionPanel>().Open();
         Close();
     }
 }

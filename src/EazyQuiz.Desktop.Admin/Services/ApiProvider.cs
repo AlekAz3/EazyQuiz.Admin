@@ -240,4 +240,19 @@ public class ApiProvider : IDisposable
 
         var response = await _client.SendAsync(request);
     }
+
+    public async Task<IReadOnlyCollection<ThemeResponse>> GetThemes()
+    {
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri($"{_baseAdress}/api/Themes"),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+
+        var response = await _client.SendAsync(request);
+
+        return await response.Content.ReadFromJsonAsync<List<ThemeResponse>>() ?? new List<ThemeResponse>();
+    }
 }

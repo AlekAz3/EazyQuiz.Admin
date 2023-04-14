@@ -47,7 +47,7 @@ public partial class LogIn : Form
         }
 
         _userToken.User = await _apiProvider.Authtenticate(username, password);
-        _formFactory.Create<Panel>().Open();
+        _formFactory.Create<AddQuestionPanel>().Open();
         Hide();
     }
 

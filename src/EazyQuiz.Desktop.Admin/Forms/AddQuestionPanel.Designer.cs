@@ -1,6 +1,6 @@
 namespace EazyQuiz.Desktop.Admin;
 
-partial class Panel
+partial class AddQuestionPanel
 {
     /// <summary>
     /// Required designer variable.
@@ -44,21 +44,24 @@ partial class Panel
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.UsersQuestionButton = new System.Windows.Forms.Button();
+            this.themesList = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // QuestionInput
             // 
             this.QuestionInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.QuestionInput.Location = new System.Drawing.Point(49, 34);
+            this.QuestionInput.Location = new System.Drawing.Point(50, 152);
             this.QuestionInput.Name = "QuestionInput";
-            this.QuestionInput.Size = new System.Drawing.Size(394, 94);
+            this.QuestionInput.Size = new System.Drawing.Size(400, 100);
             this.QuestionInput.TabIndex = 0;
             this.QuestionInput.Text = "";
             // 
             // IsFirstAnswerCorrect
             // 
             this.IsFirstAnswerCorrect.AutoSize = true;
-            this.IsFirstAnswerCorrect.Location = new System.Drawing.Point(27, 182);
+            this.IsFirstAnswerCorrect.Checked = true;
+            this.IsFirstAnswerCorrect.Location = new System.Drawing.Point(30, 341);
             this.IsFirstAnswerCorrect.Name = "IsFirstAnswerCorrect";
             this.IsFirstAnswerCorrect.Size = new System.Drawing.Size(14, 13);
             this.IsFirstAnswerCorrect.TabIndex = 1;
@@ -68,77 +71,74 @@ partial class Panel
             // FirstAnswerInput
             // 
             this.FirstAnswerInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FirstAnswerInput.Location = new System.Drawing.Point(49, 174);
+            this.FirstAnswerInput.Location = new System.Drawing.Point(50, 292);
             this.FirstAnswerInput.Name = "FirstAnswerInput";
-            this.FirstAnswerInput.Size = new System.Drawing.Size(394, 48);
+            this.FirstAnswerInput.Size = new System.Drawing.Size(400, 50);
             this.FirstAnswerInput.TabIndex = 5;
             this.FirstAnswerInput.Text = "";
             // 
             // SecondAnswerInput
             // 
             this.SecondAnswerInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SecondAnswerInput.Location = new System.Drawing.Point(49, 257);
+            this.SecondAnswerInput.Location = new System.Drawing.Point(50, 375);
             this.SecondAnswerInput.Name = "SecondAnswerInput";
-            this.SecondAnswerInput.Size = new System.Drawing.Size(394, 48);
+            this.SecondAnswerInput.Size = new System.Drawing.Size(400, 50);
             this.SecondAnswerInput.TabIndex = 7;
             this.SecondAnswerInput.Text = "";
             // 
             // IsSecondAnswerCorrect
             // 
             this.IsSecondAnswerCorrect.AutoSize = true;
-            this.IsSecondAnswerCorrect.Location = new System.Drawing.Point(27, 265);
+            this.IsSecondAnswerCorrect.Location = new System.Drawing.Point(30, 424);
             this.IsSecondAnswerCorrect.Name = "IsSecondAnswerCorrect";
             this.IsSecondAnswerCorrect.Size = new System.Drawing.Size(14, 13);
             this.IsSecondAnswerCorrect.TabIndex = 6;
-            this.IsSecondAnswerCorrect.TabStop = true;
             this.IsSecondAnswerCorrect.UseVisualStyleBackColor = true;
             // 
             // ThirdAnswerInput
             // 
             this.ThirdAnswerInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ThirdAnswerInput.Location = new System.Drawing.Point(47, 355);
+            this.ThirdAnswerInput.Location = new System.Drawing.Point(50, 473);
             this.ThirdAnswerInput.Name = "ThirdAnswerInput";
-            this.ThirdAnswerInput.Size = new System.Drawing.Size(394, 48);
+            this.ThirdAnswerInput.Size = new System.Drawing.Size(400, 50);
             this.ThirdAnswerInput.TabIndex = 9;
             this.ThirdAnswerInput.Text = "";
             // 
             // IsThirdAnswerCorrect
             // 
             this.IsThirdAnswerCorrect.AutoSize = true;
-            this.IsThirdAnswerCorrect.Location = new System.Drawing.Point(27, 374);
+            this.IsThirdAnswerCorrect.Location = new System.Drawing.Point(30, 522);
             this.IsThirdAnswerCorrect.Name = "IsThirdAnswerCorrect";
             this.IsThirdAnswerCorrect.Size = new System.Drawing.Size(14, 13);
             this.IsThirdAnswerCorrect.TabIndex = 8;
-            this.IsThirdAnswerCorrect.TabStop = true;
             this.IsThirdAnswerCorrect.UseVisualStyleBackColor = true;
             // 
             // ForthAnswerInput
             // 
             this.ForthAnswerInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ForthAnswerInput.Location = new System.Drawing.Point(47, 446);
+            this.ForthAnswerInput.Location = new System.Drawing.Point(50, 564);
             this.ForthAnswerInput.Name = "ForthAnswerInput";
-            this.ForthAnswerInput.Size = new System.Drawing.Size(394, 48);
+            this.ForthAnswerInput.Size = new System.Drawing.Size(400, 50);
             this.ForthAnswerInput.TabIndex = 11;
             this.ForthAnswerInput.Text = "";
             // 
             // IsForthAnswerCorrect
             // 
             this.IsForthAnswerCorrect.AutoSize = true;
-            this.IsForthAnswerCorrect.Location = new System.Drawing.Point(27, 467);
+            this.IsForthAnswerCorrect.Location = new System.Drawing.Point(30, 613);
             this.IsForthAnswerCorrect.Name = "IsForthAnswerCorrect";
             this.IsForthAnswerCorrect.Size = new System.Drawing.Size(14, 13);
             this.IsForthAnswerCorrect.TabIndex = 10;
-            this.IsForthAnswerCorrect.TabStop = true;
             this.IsForthAnswerCorrect.UseVisualStyleBackColor = true;
             // 
             // Send
             // 
             this.Send.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Send.Location = new System.Drawing.Point(47, 528);
+            this.Send.Location = new System.Drawing.Point(50, 623);
             this.Send.Name = "Send";
-            this.Send.Size = new System.Drawing.Size(394, 39);
+            this.Send.Size = new System.Drawing.Size(400, 50);
             this.Send.TabIndex = 12;
-            this.Send.Text = "Отправить";
+            this.Send.Text = "РћС‚РїСЂР°РІРёС‚СЊ";
             this.Send.UseVisualStyleBackColor = true;
             this.Send.Click += new System.EventHandler(this.SendQuestionToServer);
             // 
@@ -146,68 +146,90 @@ partial class Panel
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(49, 11);
+            this.label1.Location = new System.Drawing.Point(50, 129);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 20);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Введите вопрос";
+            this.label1.Text = "Р’РІРµРґРёС‚Рµ РІРѕРїСЂРѕСЃ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(47, 147);
+            this.label2.Location = new System.Drawing.Point(50, 265);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(164, 20);
             this.label2.TabIndex = 14;
-            this.label2.Text = "Введите первый ответ";
+            this.label2.Text = "Р’РІРµРґРёС‚Рµ РїРµСЂРІС‹Р№ РѕС‚РІРµС‚";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(49, 233);
+            this.label3.Location = new System.Drawing.Point(50, 351);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(160, 20);
             this.label3.TabIndex = 14;
-            this.label3.Text = "Введите второй ответ";
+            this.label3.Text = "Р’РІРµРґРёС‚Рµ РІС‚РѕСЂРѕР№ РѕС‚РІРµС‚";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(47, 332);
+            this.label4.Location = new System.Drawing.Point(50, 450);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(157, 20);
             this.label4.TabIndex = 14;
-            this.label4.Text = "Введите третий ответ";
+            this.label4.Text = "Р’РІРµРґРёС‚Рµ С‚СЂРµС‚РёР№ РѕС‚РІРµС‚";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(47, 423);
+            this.label5.Location = new System.Drawing.Point(50, 541);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(186, 20);
             this.label5.TabIndex = 14;
-            this.label5.Text = "Введите четверный ответ";
+            this.label5.Text = "Р’РІРµРґРёС‚Рµ С‡РµС‚РІРµСЂРЅС‹Р№ РѕС‚РІРµС‚";
             // 
             // UsersQuestionButton
             // 
-            this.UsersQuestionButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UsersQuestionButton.Location = new System.Drawing.Point(47, 588);
+            this.UsersQuestionButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UsersQuestionButton.Location = new System.Drawing.Point(50, 12);
             this.UsersQuestionButton.Name = "UsersQuestionButton";
-            this.UsersQuestionButton.Size = new System.Drawing.Size(394, 39);
+            this.UsersQuestionButton.Size = new System.Drawing.Size(400, 25);
             this.UsersQuestionButton.TabIndex = 15;
-            this.UsersQuestionButton.Text = "Предложенные вопросы от пользотвателей";
+            this.UsersQuestionButton.Text = "РџСЂРµРґР»РѕР¶РµРЅРЅС‹Рµ РІРѕРїСЂРѕСЃС‹ РѕС‚ РїРѕР»СЊР·РѕС‚РІР°С‚РµР»РµР№";
             this.UsersQuestionButton.UseVisualStyleBackColor = true;
             this.UsersQuestionButton.Click += new System.EventHandler(this.ShowManageUserQuestion);
+            // 
+            // themesList
+            // 
+            this.themesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.themesList.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.themesList.FormattingEnabled = true;
+            this.themesList.Location = new System.Drawing.Point(50, 86);
+            this.themesList.Name = "themesList";
+            this.themesList.Size = new System.Drawing.Size(400, 28);
+            this.themesList.TabIndex = 16;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(50, 51);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(176, 20);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Р’С‹Р±РµСЂРµС‚Рµ С‚РµРјСѓ РІРѕРїСЂРѕСЃР°";
             // 
             // Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 639);
+            this.ClientSize = new System.Drawing.Size(488, 689);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.themesList);
             this.Controls.Add(this.UsersQuestionButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -249,4 +271,6 @@ partial class Panel
     private Label label4;
     private Label label5;
     private Button UsersQuestionButton;
+    private ComboBox themesList;
+    private Label label6;
 }

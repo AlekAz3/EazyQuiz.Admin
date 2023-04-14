@@ -6,7 +6,7 @@ namespace EazyQuiz.Desktop.Admin;
 /// <summary>
 /// Панель для добавления вопросов 
 /// </summary>
-public partial class Panel : Form
+public partial class AddQuestionPanel : Form
 {
     /// <inheritdoc cref="ApiProvider"/>
     private readonly ApiProvider _apiProvider;
@@ -17,7 +17,9 @@ public partial class Panel : Form
     /// <inheritdoc cref="UserQuestionResponse"/>
     private UserQuestionResponse UserQuestionSelected { get; set; }
 
-    public Panel(ApiProvider apiProvider, IFormFactory formFactory)
+    private IReadOnlyCollection<ThemeResponse> Themes { get; set; }
+
+    public AddQuestionPanel(ApiProvider apiProvider, IFormFactory formFactory)
     {
         _apiProvider = apiProvider;
         _formFactory = formFactory;
@@ -30,6 +32,7 @@ public partial class Panel : Form
     public void Open()
     {
         Show();
+        RefrashThemes();
     }
 
     /// <summary>
@@ -46,6 +49,7 @@ public partial class Panel : Form
         var question = new QuestionWithoutId()
         {
             Text = QuestionInput.Text,
+            ThemeId = ((ThemeResponse)themesList.SelectedItem).Id,
             Answers = new List<AnswerWithoutId>()
             {
                 new AnswerWithoutId()
@@ -106,6 +110,19 @@ public partial class Panel : Form
         FirstAnswerInput.Text = userQuestion.AnswerText;
         IsFirstAnswerCorrect.Checked = true;
         Show();
+    }
+
+    private async Task RefrashThemes()
+    {
+        Themes = await _apiProvider.GetThemes();
+        themesList.Items.Clear();
+        themesList.DisplayMember = nameof(ThemeResponse.Name);
+        themesList.ValueMember = nameof(ThemeResponse.Id);
+        foreach (var item in Themes)
+        {
+            themesList.Items.Add(item);
+        }
+        themesList.SelectedIndex = 0;
     }
 
     /// <summary>
