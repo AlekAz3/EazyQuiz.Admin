@@ -28,61 +28,61 @@ partial class MainPanel
     /// </summary>
     private void InitializeComponent()
     {
-        button1 = new Button();
-        button2 = new Button();
-        button3 = new Button();
+        OpenUsersQuestion = new Button();
+        OpenAddQuestion = new Button();
+        OpenAddTheme = new Button();
         SuspendLayout();
         // 
-        // button1
+        // OpenUsersQuestion
         // 
-        button1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button1.Location = new Point(12, 12);
-        button1.Name = "button1";
-        button1.Size = new Size(436, 48);
-        button1.TabIndex = 0;
-        button1.Text = "Просмотр предложенных вопросов от пользователей";
-        button1.UseVisualStyleBackColor = true;
-        button1.Click += button1_Click;
+        OpenUsersQuestion.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        OpenUsersQuestion.Location = new Point(12, 12);
+        OpenUsersQuestion.Name = "OpenUsersQuestion";
+        OpenUsersQuestion.Size = new Size(436, 48);
+        OpenUsersQuestion.TabIndex = 0;
+        OpenUsersQuestion.Text = "Просмотр предложенных вопросов от пользователей";
+        OpenUsersQuestion.UseVisualStyleBackColor = true;
+        OpenUsersQuestion.Click += OpenUsersQuestionsPanel;
         // 
-        // button2
+        // OpenAddQuestion
         // 
-        button2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button2.Location = new Point(12, 66);
-        button2.Name = "button2";
-        button2.Size = new Size(436, 48);
-        button2.TabIndex = 1;
-        button2.Text = "Добавление вопросов";
-        button2.UseVisualStyleBackColor = true;
-        button2.Click += button2_Click;
+        OpenAddQuestion.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        OpenAddQuestion.Location = new Point(12, 66);
+        OpenAddQuestion.Name = "OpenAddQuestion";
+        OpenAddQuestion.Size = new Size(436, 48);
+        OpenAddQuestion.TabIndex = 1;
+        OpenAddQuestion.Text = "Добавление вопросов";
+        OpenAddQuestion.UseVisualStyleBackColor = true;
+        OpenAddQuestion.Click += OpenAddQuestionsPanel;
         // 
-        // button3
+        // OpenAddTheme
         // 
-        button3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button3.Location = new Point(12, 120);
-        button3.Name = "button3";
-        button3.Size = new Size(436, 48);
-        button3.TabIndex = 2;
-        button3.Text = "Добавление темы для вопросов";
-        button3.UseVisualStyleBackColor = true;
-        button3.Click += button3_Click;
+        OpenAddTheme.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        OpenAddTheme.Location = new Point(12, 120);
+        OpenAddTheme.Name = "OpenAddTheme";
+        OpenAddTheme.Size = new Size(436, 48);
+        OpenAddTheme.TabIndex = 2;
+        OpenAddTheme.Text = "Добавление темы для вопросов";
+        OpenAddTheme.UseVisualStyleBackColor = true;
+        OpenAddTheme.Click += OpenAddThemePanel;
         // 
         // MainPanel
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(467, 184);
-        Controls.Add(button3);
-        Controls.Add(button2);
-        Controls.Add(button1);
+        Controls.Add(OpenAddTheme);
+        Controls.Add(OpenAddQuestion);
+        Controls.Add(OpenUsersQuestion);
         Name = "MainPanel";
         Text = "Панель";
-        FormClosed += MainPanel_FormClosed;
+        FormClosed += FormClosingAction;
         ResumeLayout(false);
     }
 
     #endregion
 
-    private Button button1;
-    private Button button2;
-    private Button button3;
+    private Button OpenUsersQuestion;
+    private Button OpenAddQuestion;
+    private Button OpenAddTheme;
 }

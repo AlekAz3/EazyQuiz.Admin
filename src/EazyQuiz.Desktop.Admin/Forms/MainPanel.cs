@@ -1,8 +1,11 @@
-
-
 namespace EazyQuiz.Admin.Desktop;
+
+/// <summary>
+/// Форма основной панели
+/// </summary>
 public partial class MainPanel : Form
 {
+    /// <inheritdoc cref="IFormFactory"/>
     private readonly IFormFactory _formFactory;
 
     public MainPanel(IFormFactory formFactory)
@@ -11,30 +14,45 @@ public partial class MainPanel : Form
         _formFactory = formFactory;
     }
 
+    /// <summary>
+    /// Открыть форму
+    /// </summary>
     public void Open()
     {
         Show();
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    /// <summary>
+    /// Открыть форму управления предложенными вопросами от пользователей 
+    /// </summary>
+    private void OpenUsersQuestionsPanel(object sender, EventArgs e)
     {
         var form = _formFactory.Create<ManageUsersQuestionPanel>();
         form.Open();
     }
 
-    private void button2_Click(object sender, EventArgs e)
+    /// <summary>
+    /// Открыть форму добавления вопросов 
+    /// </summary>
+    private void OpenAddQuestionsPanel(object sender, EventArgs e)
     {
         var form = _formFactory.Create<AddQuestionPanel>();
         form.Open();
     }
 
-    private void button3_Click(object sender, EventArgs e)
+    /// <summary>
+    /// Открыть форму добавления новой темы
+    /// </summary>
+    private void OpenAddThemePanel(object sender, EventArgs e)
     {
         var form = _formFactory.Create<AddNewTheme>();
         form.Open();
     }
 
-    private void MainPanel_FormClosed(object sender, FormClosedEventArgs e)
+    /// <summary>
+    /// Закрытие формы
+    /// </summary>
+    private void FormClosingAction(object sender, FormClosedEventArgs e)
     {
         Application.Exit();
     }

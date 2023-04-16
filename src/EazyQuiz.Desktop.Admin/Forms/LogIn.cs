@@ -1,8 +1,10 @@
-using EazyQuiz.Admin.Desktop;
 using EazyQuiz.Extensions;
 
 namespace EazyQuiz.Admin.Desktop;
 
+/// <summary>
+/// Форма для входа
+/// </summary>
 public partial class LogIn : Form
 {
     /// <inheritdoc cref="ApiProvider/>

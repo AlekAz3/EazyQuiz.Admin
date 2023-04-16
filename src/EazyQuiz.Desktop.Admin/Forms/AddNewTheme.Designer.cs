@@ -30,7 +30,7 @@ partial class AddNewTheme
     {
         textBox1 = new TextBox();
         label1 = new Label();
-        button1 = new Button();
+        AddThemeButton = new Button();
         SuspendLayout();
         // 
         // textBox1
@@ -51,23 +51,23 @@ partial class AddNewTheme
         label1.TabIndex = 1;
         label1.Text = "Введите название темы";
         // 
-        // button1
+        // AddThemeButton
         // 
-        button1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button1.Location = new Point(12, 65);
-        button1.Name = "button1";
-        button1.Size = new Size(236, 34);
-        button1.TabIndex = 2;
-        button1.Text = "Отправить";
-        button1.UseVisualStyleBackColor = true;
-        button1.Click += button1_Click;
+        AddThemeButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        AddThemeButton.Location = new Point(12, 65);
+        AddThemeButton.Name = "AddThemeButton";
+        AddThemeButton.Size = new Size(236, 34);
+        AddThemeButton.TabIndex = 2;
+        AddThemeButton.Text = "Отправить";
+        AddThemeButton.UseVisualStyleBackColor = true;
+        AddThemeButton.Click += AddThemeButtonClick;
         // 
         // AddNewTheme
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(278, 111);
-        Controls.Add(button1);
+        Controls.Add(AddThemeButton);
         Controls.Add(label1);
         Controls.Add(textBox1);
         Name = "AddNewTheme";
@@ -80,5 +80,5 @@ partial class AddNewTheme
 
     private TextBox textBox1;
     private Label label1;
-    private Button button1;
+    private Button AddThemeButton;
 }

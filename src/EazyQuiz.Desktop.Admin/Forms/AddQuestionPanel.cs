@@ -17,6 +17,9 @@ public partial class AddQuestionPanel : Form
     /// <inheritdoc cref="UserQuestionResponse"/>
     private UserQuestionResponse? UserQuestionSelected { get; set; }
 
+    /// <summary>
+    /// Коллекция тем 
+    /// </summary>
     private IReadOnlyCollection<ThemeResponse> Themes { get; set; } = new List<ThemeResponse>();
 
     public AddQuestionPanel(ApiProvider apiProvider, IFormFactory formFactory)
@@ -112,6 +115,9 @@ public partial class AddQuestionPanel : Form
         Show();
     }
 
+    /// <summary>
+    /// Обновить список тем для вопросов
+    /// </summary>
     private async Task RefrashThemes()
     {
         Themes = await _apiProvider.GetThemes();
