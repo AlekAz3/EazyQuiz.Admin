@@ -1,4 +1,4 @@
-namespace EazyQuiz.Desktop.Admin;
+namespace EazyQuiz.Admin.Desktop;
 
 /// <summary>
 /// Интерфейс фабрика по создаю форм

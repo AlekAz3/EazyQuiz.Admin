@@ -1,6 +1,7 @@
+using EazyQuiz.Admin.Desktop;
 using EazyQuiz.Extensions;
 
-namespace EazyQuiz.Desktop.Admin;
+namespace EazyQuiz.Admin.Desktop;
 
 public partial class LogIn : Form
 {
@@ -47,7 +48,7 @@ public partial class LogIn : Form
         }
 
         _userToken.User = await _apiProvider.Authtenticate(username, password);
-        _formFactory.Create<AddQuestionPanel>().Open();
+        _formFactory.Create<MainPanel>().Open();
         Hide();
     }
 

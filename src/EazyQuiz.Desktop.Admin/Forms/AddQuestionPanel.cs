@@ -1,7 +1,7 @@
 using EazyQuiz.Extensions;
 using EazyQuiz.Models.DTO;
 
-namespace EazyQuiz.Desktop.Admin;
+namespace EazyQuiz.Admin.Desktop;
 
 /// <summary>
 /// Панель для добавления вопросов 
@@ -15,9 +15,9 @@ public partial class AddQuestionPanel : Form
     private readonly IFormFactory _formFactory;
 
     /// <inheritdoc cref="UserQuestionResponse"/>
-    private UserQuestionResponse UserQuestionSelected { get; set; }
+    private UserQuestionResponse? UserQuestionSelected { get; set; }
 
-    private IReadOnlyCollection<ThemeResponse> Themes { get; set; }
+    private IReadOnlyCollection<ThemeResponse> Themes { get; set; } = new List<ThemeResponse>();
 
     public AddQuestionPanel(ApiProvider apiProvider, IFormFactory formFactory)
     {
@@ -29,10 +29,10 @@ public partial class AddQuestionPanel : Form
     /// <summary>
     /// Открыть окно
     /// </summary>
-    public void Open()
+    public async void Open()
     {
         Show();
-        RefrashThemes();
+        await RefrashThemes();
     }
 
     /// <summary>
@@ -122,7 +122,11 @@ public partial class AddQuestionPanel : Form
         {
             themesList.Items.Add(item);
         }
-        themesList.SelectedIndex = 0;
+
+        if (Themes.Count > 0)
+        {
+            themesList.SelectedIndex = 0;
+        }
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 using EazyQuiz.Extensions;
 
-namespace EazyQuiz.Desktop.Admin;
+namespace EazyQuiz.Admin.Desktop;
 
 /// <summary>
 /// Форма регистрации новых игроков
