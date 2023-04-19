@@ -1,7 +1,10 @@
 using EazyQuiz.Extensions;
 
-namespace EazyQuiz.Desktop.Admin;
+namespace EazyQuiz.Admin.Desktop;
 
+/// <summary>
+/// Форма для входа
+/// </summary>
 public partial class LogIn : Form
 {
     /// <inheritdoc cref="ApiProvider/>
@@ -47,7 +50,7 @@ public partial class LogIn : Form
         }
 
         _userToken.User = await _apiProvider.Authtenticate(username, password);
-        _formFactory.Create<Panel>().Open();
+        _formFactory.Create<MainPanel>().Open();
         Hide();
     }
 

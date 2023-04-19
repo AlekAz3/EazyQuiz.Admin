@@ -1,6 +1,6 @@
 using EazyQuiz.Models.DTO;
 
-namespace EazyQuiz.Desktop.Admin;
+namespace EazyQuiz.Admin.Desktop;
 
 /// <summary>
 /// Форма управления вопросами предложенных пользователями
@@ -40,7 +40,11 @@ public partial class ManageUsersQuestionPanel : Form
     private async void FormLoadEvent(object sender, EventArgs e)
     {
         await RefreshList();
-        usersQuestionsList.SelectedIndex = 0;
+        if (usersQuestionsList.Items.Count > 0)
+        {
+            usersQuestionsList.SelectedIndex = 0;
+
+        }
     }
 
     /// <summary>
@@ -87,7 +91,7 @@ public partial class ManageUsersQuestionPanel : Form
 
         selectedQuestion.Status = "Принято";
 
-        var a = _formFactory.Create<Panel>();
+        var a = _formFactory.Create<AddQuestionPanel>();
 #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
         a.FormClosing += FormLoadEvent;
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
@@ -115,14 +119,6 @@ public partial class ManageUsersQuestionPanel : Form
     }
 
     /// <summary>
-    /// Закрытие формы закраивает всю программу
-    /// </summary>
-    private void FormClosingEvent(object sender, FormClosedEventArgs e)
-    {
-        Application.Exit();
-    }
-
-    /// <summary>
     /// Кнопка обновления списка вопросов от пользователей  
     /// </summary>
     private async void RefreshListClick(object sender, EventArgs e)
@@ -135,10 +131,6 @@ public partial class ManageUsersQuestionPanel : Form
     /// </summary>
     private void ExitButtonClick(object sender, EventArgs e)
     {
-#pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
-        FormClosed -= FormClosingEvent;
-#pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
-        _formFactory.Create<Panel>().Open();
         Close();
     }
 }

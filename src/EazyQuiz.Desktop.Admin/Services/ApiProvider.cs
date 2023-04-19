@@ -7,7 +7,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
 
-namespace EazyQuiz.Desktop.Admin;
+namespace EazyQuiz.Admin.Desktop;
 
 /// <summary>
 /// Работа с Апи EazyQuiz
@@ -233,6 +233,37 @@ public class ApiProvider : IDisposable
         {
             Method = HttpMethod.Put,
             RequestUri = new Uri($"{_baseAdress}/api/ManageUserQuestions"),
+            Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+
+        var response = await _client.SendAsync(request);
+    }
+
+    public async Task<IReadOnlyCollection<ThemeResponse>> GetThemes()
+    {
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri($"{_baseAdress}/api/Themes"),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+
+        var response = await _client.SendAsync(request);
+
+        return await response.Content.ReadFromJsonAsync<List<ThemeResponse>>() ?? new List<ThemeResponse>();
+    }
+
+    public async Task SendNewTheme(string text)
+    {
+        string json = JsonSerializer.Serialize(text);
+
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Post,
+            RequestUri = new Uri($"{_baseAdress}/api/Themes"),
             Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
         };
         request.Headers.TryAddWithoutValidation("Accept", "application/json");

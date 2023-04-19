@@ -1,6 +1,6 @@
 using EazyQuiz.Models.DTO;
 
-namespace EazyQuiz.Desktop.Admin;
+namespace EazyQuiz.Admin.Desktop;
 
 /// <summary>
 /// Глобальный параметр 
