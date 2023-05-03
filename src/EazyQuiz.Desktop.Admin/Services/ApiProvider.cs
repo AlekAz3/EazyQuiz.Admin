@@ -42,9 +42,14 @@ public class ApiProvider : IDisposable
     /// <param name="username">Ник</param>
     /// <param name="password">Пароль</param>
     /// <exception cref="ArgumentException">Пользователь не найден</exception>
-    public async Task<UserResponse> Authtenticate(string username, string password)
+    public async Task<UserResponse?> Authtenticate(string username, string password)
     {
         var salt = await GetUserSaltByUsername(username);
+
+        if (string.IsNullOrEmpty(salt))
+        {
+            return null;
+        }
 
         var hashPassword = PasswordHash.HashWithCurrentSalt(password, salt);
 
@@ -64,12 +69,7 @@ public class ApiProvider : IDisposable
 
         var responseBody = await response.Content.ReadAsStringAsync();
 
-        var userResponse = JsonSerializer.Deserialize<UserResponse>(responseBody);
-
-        if (userResponse == null)
-        {
-            throw new ArgumentException("Error in Deserialize");
-        }
+        var userResponse = JsonSerializer.Deserialize<UserResponse>(responseBody) ?? null;
 
         return userResponse;
     }
@@ -90,12 +90,11 @@ public class ApiProvider : IDisposable
 
         var response = await _client.SendAsync(request);
 
-        var responseBody = await response.Content.ReadAsStringAsync();
-
-        if (responseBody == null)
+        if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
-            throw new ArgumentNullException(paramName: nameof(userName));
+            return "";
         }
+        var responseBody = await response.Content.ReadAsStringAsync();
         return responseBody;
     }
 
@@ -104,18 +103,15 @@ public class ApiProvider : IDisposable
     /// </summary>
     /// <param name="password">Пароль</param>
     /// <param name="username">Ник</param>
-    /// <param name="age">Возраст</param>
-    /// <param name="gender">Пол</param>
     /// <param name="country">Страна</param>
-    internal async Task Registrate(string password, string username, int age, string gender, string country)
+    internal async Task Registrate(string password, string username, string country)
     {
         var user = new UserRegister()
         {
             Username = username,
-            Age = age,
-            Gender = gender,
             Country = country,
-            Password = PasswordHash.Hash(password)
+            Password = PasswordHash.Hash(password),
+            Role = "Admin"
         };
 
         string json = JsonSerializer.Serialize(user);
