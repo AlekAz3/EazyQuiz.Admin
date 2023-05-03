@@ -26,7 +26,7 @@ public class ApiProvider : IDisposable
     /// <summary>
     /// Адрес сервера 
     /// </summary>
-    private readonly string _baseAdress;
+    private readonly string? _baseAdress;
 
     public ApiProvider(IConfiguration config, UserToken user)
     {

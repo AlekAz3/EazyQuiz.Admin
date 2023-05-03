@@ -31,7 +31,7 @@ public partial class ManageUsersQuestionPanel : Form
     public void Open()
     {
         Show();
-        Task.Run(async () => { await RefreshList(); });
+        Task.Run(RefreshList);
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public partial class ManageUsersQuestionPanel : Form
     /// </summary>
     private void SelectUserQuestion(object sender, EventArgs e)
     {
-        var selectedQuestion = (UserQuestionResponse)usersQuestionsList.SelectedItem;
+        var selectedQuestion = (UserQuestionResponse)usersQuestionsList.SelectedItem!;
 
         if (selectedQuestion is null)
         {
@@ -83,7 +83,7 @@ public partial class ManageUsersQuestionPanel : Form
     /// </summary>
     private void AcceptQuestionClick(object sender, EventArgs e)
     {
-        var selectedQuestion = (UserQuestionResponse)usersQuestionsList.SelectedItem;
+        var selectedQuestion = (UserQuestionResponse)usersQuestionsList.SelectedItem!;
         if (selectedQuestion is null)
         {
             return;
@@ -104,7 +104,7 @@ public partial class ManageUsersQuestionPanel : Form
     private async void DenyQuestionClick(object sender, EventArgs e)
     {
         var choice = MessageBox.Show("Вы уверены?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-        var selectedQuestion = (UserQuestionResponse)usersQuestionsList.SelectedItem;
+        var selectedQuestion = (UserQuestionResponse)usersQuestionsList.SelectedItem!;
 
         if (selectedQuestion is null)
         {
