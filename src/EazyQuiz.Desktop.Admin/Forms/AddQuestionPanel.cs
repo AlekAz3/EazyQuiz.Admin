@@ -105,13 +105,14 @@ public partial class AddQuestionPanel : Form
     /// Открыть форму для добавления предложенного пользователем вопроса
     /// </summary>
     /// <param name="userQuestion">Предложенный пользователем вопрос</param>
-    public void ShowWithUsersQuestion(UserQuestionResponse userQuestion)
+    public async void ShowWithUsersQuestion(UserQuestionResponse userQuestion)
     {
         UserQuestionSelected = userQuestion;
         UsersQuestionButton.Hide();
         QuestionInput.Text = userQuestion.QuestionText;
         FirstAnswerInput.Text = userQuestion.AnswerText;
         IsFirstAnswerCorrect.Checked = true;
+        await RefrashThemes();
         Show();
     }
 
