@@ -49,28 +49,28 @@ public partial class AddQuestionPanel : Form
             return;
         }
 
-        var question = new QuestionWithoutId()
+        var question = new QuestionInputDTO()
         {
             Text = QuestionInput.Text,
             ThemeId = ((ThemeResponse)themesList.SelectedItem).Id,
-            Answers = new List<AnswerWithoutId>()
+            Answers = new List<AnswerInputDTO>()
             {
-                new AnswerWithoutId()
+                new AnswerInputDTO()
                 {
                     Text = FirstAnswerInput.Text,
                     IsCorrect = IsFirstAnswerCorrect.Checked
                 },
-                new AnswerWithoutId()
+                new AnswerInputDTO()
                 {
                     Text = SecondAnswerInput.Text,
                     IsCorrect = IsSecondAnswerCorrect.Checked
                 },
-                new AnswerWithoutId()
+                new AnswerInputDTO()
                 {
                     Text = ThirdAnswerInput.Text,
                     IsCorrect = IsThirdAnswerCorrect.Checked
                 },
-                new AnswerWithoutId()
+                new AnswerInputDTO()
                 {
                     Text = ForthAnswerInput.Text,
                     IsCorrect = IsForthAnswerCorrect.Checked

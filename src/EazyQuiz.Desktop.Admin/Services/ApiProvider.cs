@@ -145,31 +145,10 @@ public class ApiProvider : IDisposable
     }
 
     /// <summary>
-    /// Получить вопрос и ответы с сервера
-    /// </summary>
-    public async Task<QuestionWithAnswers> GetQuestion()
-    {
-        var request = new HttpRequestMessage
-        {
-            Method = HttpMethod.Get,
-            RequestUri = new Uri($"{_baseAdress}/api/Questions/GetQuestion"),
-        };
-
-        request.Headers.TryAddWithoutValidation("Accept", "application/json");
-        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
-
-        var response = await _client.SendAsync(request);
-
-        var responseBody = await response.Content.ReadAsStringAsync();
-
-        return JsonSerializer.Deserialize<QuestionWithAnswers>(responseBody) ?? new QuestionWithAnswers();
-    }
-
-    /// <summary>
     /// Отправить на сервер новый вопрос
     /// </summary>
-    /// <param name="quws">Вопрос в <see cref="QuestionWithoutId"/></param>
-    public async Task SendNewQuestion(QuestionWithoutId quws)
+    /// <param name="quws">Вопрос в <see cref="QuestionInputDTO"/></param>
+    public async Task SendNewQuestion(QuestionInputDTO quws)
     {
         string json = JsonSerializer.Serialize(quws);
 
