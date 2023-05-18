@@ -28,192 +28,134 @@ partial class Registration
     /// </summary>
     private void InitializeComponent()
     {
-            this.UsernameInput = new System.Windows.Forms.TextBox();
-            this.PasswordInput = new System.Windows.Forms.TextBox();
-            this.PasswordVerifyInput = new System.Windows.Forms.TextBox();
-            this.AgeInput = new System.Windows.Forms.NumericUpDown();
-            this.GenderInput = new System.Windows.Forms.ComboBox();
-            this.CountryInput = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.RegisterButton = new System.Windows.Forms.Button();
-            this.EnterButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.AgeInput)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // UsernameInput
-            // 
-            this.UsernameInput.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UsernameInput.Location = new System.Drawing.Point(163, 12);
-            this.UsernameInput.Name = "UsernameInput";
-            this.UsernameInput.Size = new System.Drawing.Size(194, 27);
-            this.UsernameInput.TabIndex = 0;
-            // 
-            // PasswordInput
-            // 
-            this.PasswordInput.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.PasswordInput.Location = new System.Drawing.Point(163, 45);
-            this.PasswordInput.Name = "PasswordInput";
-            this.PasswordInput.Size = new System.Drawing.Size(194, 27);
-            this.PasswordInput.TabIndex = 1;
-            // 
-            // PasswordVerifyInput
-            // 
-            this.PasswordVerifyInput.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.PasswordVerifyInput.Location = new System.Drawing.Point(163, 78);
-            this.PasswordVerifyInput.Name = "PasswordVerifyInput";
-            this.PasswordVerifyInput.Size = new System.Drawing.Size(194, 27);
-            this.PasswordVerifyInput.TabIndex = 2;
-            // 
-            // AgeInput
-            // 
-            this.AgeInput.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AgeInput.Location = new System.Drawing.Point(163, 111);
-            this.AgeInput.Name = "AgeInput";
-            this.AgeInput.Size = new System.Drawing.Size(194, 27);
-            this.AgeInput.TabIndex = 3;
-            // 
-            // GenderInput
-            // 
-            this.GenderInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.GenderInput.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.GenderInput.FormattingEnabled = true;
-            this.GenderInput.Items.AddRange(new object[] {
-            "Мужской",
-            "Женский",
-            "Другой",
-            "Не скажу"});
-            this.GenderInput.Location = new System.Drawing.Point(163, 144);
-            this.GenderInput.Name = "GenderInput";
-            this.GenderInput.Size = new System.Drawing.Size(194, 28);
-            this.GenderInput.TabIndex = 4;
-            // 
-            // CountryInput
-            // 
-            this.CountryInput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CountryInput.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CountryInput.FormattingEnabled = true;
-            this.CountryInput.Items.AddRange(new object[] {
-            "Россия",
-            "Украина",
-            "Беларусь"
-            });
-            this.CountryInput.Location = new System.Drawing.Point(163, 178);
-            this.CountryInput.Name = "CountryInput";
-            this.CountryInput.Size = new System.Drawing.Size(194, 28);
-            this.CountryInput.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(18, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Ник";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(18, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 20);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Пароль";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(18, 81);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 20);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Повторите пароль";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(18, 113);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 20);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Возраст";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(18, 147);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 20);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Пол";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(18, 181);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 20);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Страна";
-            // 
-            // RegisterButton
-            // 
-            this.RegisterButton.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.RegisterButton.Location = new System.Drawing.Point(18, 221);
-            this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(339, 41);
-            this.RegisterButton.TabIndex = 6;
-            this.RegisterButton.Text = "Зарегестрироваться ";
-            this.RegisterButton.UseVisualStyleBackColor = true;
-            this.RegisterButton.Click += new System.EventHandler(this.RegisterButtonClick);
-            // 
-            // EnterButton
-            // 
-            this.EnterButton.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.EnterButton.Location = new System.Drawing.Point(18, 268);
-            this.EnterButton.Name = "EnterButton";
-            this.EnterButton.Size = new System.Drawing.Size(339, 41);
-            this.EnterButton.TabIndex = 7;
-            this.EnterButton.Text = "Вход";
-            this.EnterButton.UseVisualStyleBackColor = true;
-            this.EnterButton.Click += new System.EventHandler(this.EnterButtonClick);
-            // 
-            // Registration
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 321);
-            this.Controls.Add(this.EnterButton);
-            this.Controls.Add(this.RegisterButton);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.CountryInput);
-            this.Controls.Add(this.GenderInput);
-            this.Controls.Add(this.AgeInput);
-            this.Controls.Add(this.PasswordVerifyInput);
-            this.Controls.Add(this.PasswordInput);
-            this.Controls.Add(this.UsernameInput);
-            this.Name = "Registration";
-            this.Text = "Регистрация";
-            ((System.ComponentModel.ISupportInitialize)(this.AgeInput)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+        UsernameInput = new TextBox();
+        PasswordInput = new TextBox();
+        PasswordVerifyInput = new TextBox();
+        CountryInput = new ComboBox();
+        label1 = new Label();
+        label3 = new Label();
+        label4 = new Label();
+        label7 = new Label();
+        RegisterButton = new Button();
+        EnterButton = new Button();
+        SuspendLayout();
+        // 
+        // UsernameInput
+        // 
+        UsernameInput.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        UsernameInput.Location = new Point(163, 12);
+        UsernameInput.Name = "UsernameInput";
+        UsernameInput.Size = new Size(194, 27);
+        UsernameInput.TabIndex = 0;
+        // 
+        // PasswordInput
+        // 
+        PasswordInput.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        PasswordInput.Location = new Point(163, 45);
+        PasswordInput.Name = "PasswordInput";
+        PasswordInput.Size = new Size(194, 27);
+        PasswordInput.TabIndex = 1;
+        // 
+        // PasswordVerifyInput
+        // 
+        PasswordVerifyInput.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        PasswordVerifyInput.Location = new Point(163, 78);
+        PasswordVerifyInput.Name = "PasswordVerifyInput";
+        PasswordVerifyInput.Size = new Size(194, 27);
+        PasswordVerifyInput.TabIndex = 2;
+        // 
+        // CountryInput
+        // 
+        CountryInput.DropDownStyle = ComboBoxStyle.DropDownList;
+        CountryInput.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        CountryInput.FormattingEnabled = true;
+        CountryInput.Items.AddRange(new object[] { "Россия", "Украина", "Беларусь" });
+        CountryInput.Location = new Point(163, 126);
+        CountryInput.Name = "CountryInput";
+        CountryInput.Size = new Size(194, 28);
+        CountryInput.TabIndex = 5;
+        // 
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label1.Location = new Point(18, 15);
+        label1.Name = "label1";
+        label1.Size = new Size(36, 20);
+        label1.TabIndex = 7;
+        label1.Text = "Ник";
+        // 
+        // label3
+        // 
+        label3.AutoSize = true;
+        label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label3.Location = new Point(18, 48);
+        label3.Name = "label3";
+        label3.Size = new Size(62, 20);
+        label3.TabIndex = 8;
+        label3.Text = "Пароль";
+        // 
+        // label4
+        // 
+        label4.AutoSize = true;
+        label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label4.Location = new Point(18, 81);
+        label4.Name = "label4";
+        label4.Size = new Size(139, 20);
+        label4.TabIndex = 8;
+        label4.Text = "Повторите пароль";
+        // 
+        // label7
+        // 
+        label7.AutoSize = true;
+        label7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        label7.Location = new Point(18, 129);
+        label7.Name = "label7";
+        label7.Size = new Size(58, 20);
+        label7.TabIndex = 10;
+        label7.Text = "Страна";
+        // 
+        // RegisterButton
+        // 
+        RegisterButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        RegisterButton.Location = new Point(18, 169);
+        RegisterButton.Name = "RegisterButton";
+        RegisterButton.Size = new Size(339, 41);
+        RegisterButton.TabIndex = 6;
+        RegisterButton.Text = "Зарегестрироваться ";
+        RegisterButton.UseVisualStyleBackColor = true;
+        RegisterButton.Click += RegisterButtonClick;
+        // 
+        // EnterButton
+        // 
+        EnterButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        EnterButton.Location = new Point(18, 216);
+        EnterButton.Name = "EnterButton";
+        EnterButton.Size = new Size(339, 41);
+        EnterButton.TabIndex = 7;
+        EnterButton.Text = "Вход";
+        EnterButton.UseVisualStyleBackColor = true;
+        EnterButton.Click += EnterButtonClick;
+        // 
+        // Registration
+        // 
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(373, 321);
+        Controls.Add(EnterButton);
+        Controls.Add(RegisterButton);
+        Controls.Add(label7);
+        Controls.Add(label4);
+        Controls.Add(label3);
+        Controls.Add(label1);
+        Controls.Add(CountryInput);
+        Controls.Add(PasswordVerifyInput);
+        Controls.Add(PasswordInput);
+        Controls.Add(UsernameInput);
+        Name = "Registration";
+        Text = "Регистрация";
+        ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
@@ -221,14 +163,10 @@ partial class Registration
     private TextBox UsernameInput;
     private TextBox PasswordInput;
     private TextBox PasswordVerifyInput;
-    private NumericUpDown AgeInput;
-    private ComboBox GenderInput;
     private ComboBox CountryInput;
     private Label label1;
     private Label label3;
     private Label label4;
-    private Label label5;
-    private Label label6;
     private Label label7;
     private Button RegisterButton;
     private Button EnterButton;

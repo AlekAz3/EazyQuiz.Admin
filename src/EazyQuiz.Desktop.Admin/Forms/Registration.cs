@@ -14,7 +14,6 @@ public partial class Registration : Form
     {
         _apiProvider = apiProvider;
         InitializeComponent();
-        GenderInput.SelectedIndex = 0;
         CountryInput.SelectedIndex = 0;
     }
 
@@ -34,8 +33,6 @@ public partial class Registration : Form
         string password = PasswordInput.Text;
         string passwordVerify = PasswordVerifyInput.Text;
         string username = UsernameInput.Text;
-        int age = (int)AgeInput.Value;
-        string? gender = GenderInput.SelectedItem.ToString();
         string? country = CountryInput.SelectedItem.ToString();
 
         if (!(password.IsEqual(passwordVerify) && password.IsNoBannedSymbols() && password.IsContaintsLowerCaseLetter() && password.IsContaintsUpperCaseLetter() && password.IsContaintsNumeric() && password.IsMoreEightSymbols()))
@@ -50,11 +47,6 @@ public partial class Registration : Form
             return;
         }
 
-        if (age <= 0)
-        {
-            MessageBox.Show("Неверный поле возраст", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
         if (await _apiProvider.CheckUsername(username))
         {
             MessageBox.Show("Ник уже существует", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -62,7 +54,7 @@ public partial class Registration : Form
         }
 
 #pragma warning disable CS8604 // Possible null reference argument.
-        await Task.Run(() => { return _apiProvider.Registrate(password, username, age, gender, country); });
+        await Task.Run(() => { return _apiProvider.Registrate(password, username, country); });
 #pragma warning restore CS8604 // Possible null reference argument.
 
         MessageBox.Show("Регистрация прошла успешно");

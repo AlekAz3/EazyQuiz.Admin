@@ -7,9 +7,7 @@ namespace EazyQuiz.Admin.Desktop;
 /// </summary>
 public class FormFactory : IFormFactory
 {
-    /// <summary>
     /// <inheritdoc cref="IServiceScope"/>
-    /// </summary>
     private readonly IServiceScope _scope;
 
     public FormFactory(IServiceScopeFactory scopeFactory)

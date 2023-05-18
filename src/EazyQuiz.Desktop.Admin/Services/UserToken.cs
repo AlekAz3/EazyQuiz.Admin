@@ -8,7 +8,7 @@ namespace EazyQuiz.Admin.Desktop;
 public class UserToken
 {
     /// <summary>
-    /// Инфа об авторизованном пользователе
+    /// Информация об авторизованном пользователе
     /// </summary>
     public UserResponse User { get; set; } = new UserResponse();
 }

@@ -50,6 +50,12 @@ public partial class LogIn : Form
         }
 
         _userToken.User = await _apiProvider.Authtenticate(username, password);
+
+        if (_userToken.User is null)
+        {
+            MessageBox.Show("Пользователь не найден или у вас нет прав администратора", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
         _formFactory.Create<MainPanel>().Open();
         Hide();
     }
