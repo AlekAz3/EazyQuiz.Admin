@@ -6,6 +6,7 @@ using System.Net.Http.Json;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace EazyQuiz.Admin.Desktop;
 
@@ -32,7 +33,9 @@ public class ApiProvider : IDisposable
     {
         _config = config;
         _user = user;
-        _baseAdress = _config["EazyQuizApiUrl"];
+        //_baseAdress = _config["EazyQuizApiUrl"];
+
+        _baseAdress = "http://10.61.140.42:5274";
         _client = new HttpClient();
     }
 
@@ -238,6 +241,38 @@ public class ApiProvider : IDisposable
         var request = new HttpRequestMessage
         {
             Method = HttpMethod.Post,
+            RequestUri = new Uri($"{_baseAdress}/api/Themes"),
+            Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+
+        var response = await _client.SendAsync(request);
+    }
+
+    internal async Task<IReadOnlyCollection<ThemeResponseWithFlag>> GetAllThemes()
+    {
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri($"{_baseAdress}/api/Themes/all"),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+
+        var response = await _client.SendAsync(request);
+
+        return await response.Content.ReadFromJsonAsync<List<ThemeResponseWithFlag>>() ?? new List<ThemeResponseWithFlag>();
+
+    }
+
+    public async Task UpdateThemes(IReadOnlyCollection<ThemeResponseWithFlag> themes)
+    {
+        string json = JsonSerializer.Serialize(themes);
+
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Put,
             RequestUri = new Uri($"{_baseAdress}/api/Themes"),
             Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
         };

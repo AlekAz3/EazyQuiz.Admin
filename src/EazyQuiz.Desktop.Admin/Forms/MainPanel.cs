@@ -48,6 +48,11 @@ public partial class MainPanel : Form
         var form = _formFactory.Create<AddNewTheme>();
         form.Open();
     }
+    private void UpdateThemesButton(object sender, EventArgs e)
+    {
+        var form = _formFactory.Create<ThemeUpdate>();
+        form.Open();
+    }
 
     /// <summary>
     /// Закрытие формы
@@ -56,4 +61,5 @@ public partial class MainPanel : Form
     {
         Application.Exit();
     }
+
 }

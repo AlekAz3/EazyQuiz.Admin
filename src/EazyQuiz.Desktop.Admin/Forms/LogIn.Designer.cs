@@ -28,88 +28,87 @@ partial class LogIn
     /// </summary>
     private void InitializeComponent()
     {
-            this.UsernameInput = new System.Windows.Forms.TextBox();
-            this.UsernameLabel = new System.Windows.Forms.Label();
-            this.PasswordInput = new System.Windows.Forms.TextBox();
-            this.PasswordLabel = new System.Windows.Forms.Label();
-            this.EnterButton = new System.Windows.Forms.Button();
-            this.Register = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // UsernameInput
-            // 
-            this.UsernameInput.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UsernameInput.Location = new System.Drawing.Point(12, 33);
-            this.UsernameInput.Name = "UsernameInput";
-            this.UsernameInput.Size = new System.Drawing.Size(251, 29);
-            this.UsernameInput.TabIndex = 0;
-            // 
-            // UsernameLabel
-            // 
-            this.UsernameLabel.AutoSize = true;
-            this.UsernameLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UsernameLabel.Location = new System.Drawing.Point(12, 9);
-            this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(98, 21);
-            this.UsernameLabel.TabIndex = 1;
-            this.UsernameLabel.Text = "Введите ник";
-            // 
-            // PasswordInput
-            // 
-            this.PasswordInput.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.PasswordInput.Location = new System.Drawing.Point(12, 101);
-            this.PasswordInput.Name = "PasswordInput";
-            this.PasswordInput.Size = new System.Drawing.Size(251, 29);
-            this.PasswordInput.TabIndex = 1;
-            // 
-            // PasswordLabel
-            // 
-            this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.PasswordLabel.Location = new System.Drawing.Point(12, 77);
-            this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(123, 21);
-            this.PasswordLabel.TabIndex = 1;
-            this.PasswordLabel.Text = "Введите пароль";
-            // 
-            // EnterButton
-            // 
-            this.EnterButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.EnterButton.Location = new System.Drawing.Point(12, 144);
-            this.EnterButton.Name = "EnterButton";
-            this.EnterButton.Size = new System.Drawing.Size(251, 31);
-            this.EnterButton.TabIndex = 2;
-            this.EnterButton.Text = "Войти";
-            this.EnterButton.UseVisualStyleBackColor = true;
-            this.EnterButton.Click += new System.EventHandler(this.EnterButtonClick);
-            // 
-            // Register
-            // 
-            this.Register.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Register.Location = new System.Drawing.Point(12, 181);
-            this.Register.Name = "Register";
-            this.Register.Size = new System.Drawing.Size(251, 31);
-            this.Register.TabIndex = 2;
-            this.Register.Text = "Регистрация";
-            this.Register.UseVisualStyleBackColor = true;
-            this.Register.Click += new System.EventHandler(this.RegistrationButtonClick);
-            // 
-            // LogIn
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(281, 227);
-            this.Controls.Add(this.Register);
-            this.Controls.Add(this.EnterButton);
-            this.Controls.Add(this.PasswordLabel);
-            this.Controls.Add(this.PasswordInput);
-            this.Controls.Add(this.UsernameLabel);
-            this.Controls.Add(this.UsernameInput);
-            this.Name = "LogIn";
-            this.Text = "Вход";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+        UsernameInput = new TextBox();
+        UsernameLabel = new Label();
+        PasswordInput = new TextBox();
+        PasswordLabel = new Label();
+        EnterButton = new Button();
+        Register = new Button();
+        SuspendLayout();
+        // 
+        // UsernameInput
+        // 
+        UsernameInput.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        UsernameInput.Location = new Point(12, 33);
+        UsernameInput.Name = "UsernameInput";
+        UsernameInput.Size = new Size(251, 29);
+        UsernameInput.TabIndex = 0;
+        // 
+        // UsernameLabel
+        // 
+        UsernameLabel.AutoSize = true;
+        UsernameLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        UsernameLabel.Location = new Point(12, 9);
+        UsernameLabel.Name = "UsernameLabel";
+        UsernameLabel.Size = new Size(98, 21);
+        UsernameLabel.TabIndex = 1;
+        UsernameLabel.Text = "Введите ник";
+        // 
+        // PasswordInput
+        // 
+        PasswordInput.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        PasswordInput.Location = new Point(12, 101);
+        PasswordInput.Name = "PasswordInput";
+        PasswordInput.Size = new Size(251, 29);
+        PasswordInput.TabIndex = 1;
+        // 
+        // PasswordLabel
+        // 
+        PasswordLabel.AutoSize = true;
+        PasswordLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        PasswordLabel.Location = new Point(12, 77);
+        PasswordLabel.Name = "PasswordLabel";
+        PasswordLabel.Size = new Size(123, 21);
+        PasswordLabel.TabIndex = 1;
+        PasswordLabel.Text = "Введите пароль";
+        // 
+        // EnterButton
+        // 
+        EnterButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        EnterButton.Location = new Point(12, 144);
+        EnterButton.Name = "EnterButton";
+        EnterButton.Size = new Size(251, 31);
+        EnterButton.TabIndex = 2;
+        EnterButton.Text = "Войти";
+        EnterButton.UseVisualStyleBackColor = true;
+        EnterButton.Click += EnterButtonClick;
+        // 
+        // Register
+        // 
+        Register.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        Register.Location = new Point(12, 181);
+        Register.Name = "Register";
+        Register.Size = new Size(251, 31);
+        Register.TabIndex = 2;
+        Register.Text = "Регистрация";
+        Register.UseVisualStyleBackColor = true;
+        Register.Click += RegistrationButtonClick;
+        // 
+        // LogIn
+        // 
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(273, 221);
+        Controls.Add(Register);
+        Controls.Add(EnterButton);
+        Controls.Add(PasswordLabel);
+        Controls.Add(PasswordInput);
+        Controls.Add(UsernameLabel);
+        Controls.Add(UsernameInput);
+        Name = "LogIn";
+        Text = "Вход";
+        ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
