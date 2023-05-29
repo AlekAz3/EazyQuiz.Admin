@@ -38,14 +38,13 @@ partial class ThemeUpdate
         ThemeList.FormattingEnabled = true;
         ThemeList.Location = new Point(12, 12);
         ThemeList.Name = "ThemeList";
-        ThemeList.Size = new Size(328, 378);
+        ThemeList.Size = new Size(328, 444);
         ThemeList.TabIndex = 0;
-        ThemeList.SelectedIndexChanged += ThemeList_SelectedIndexChanged;
         // 
         // button1
         // 
         button1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button1.Location = new Point(12, 396);
+        button1.Location = new Point(12, 462);
         button1.Name = "button1";
         button1.Size = new Size(328, 33);
         button1.TabIndex = 1;
@@ -57,7 +56,7 @@ partial class ThemeUpdate
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(356, 450);
+        ClientSize = new Size(356, 539);
         Controls.Add(button1);
         Controls.Add(ThemeList);
         Name = "ThemeUpdate";

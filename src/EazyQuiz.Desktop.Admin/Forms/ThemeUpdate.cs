@@ -1,13 +1,4 @@
 using EazyQuiz.Models.DTO;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace EazyQuiz.Admin.Desktop;
 public partial class ThemeUpdate : Form
@@ -25,30 +16,36 @@ public partial class ThemeUpdate : Form
     public void Open()
     {
         Show();
-        ThemeList.
     }
 
     private async void LoadThemes(object sender, EventArgs e)
     {
-        _themes.AddRange(await _apiProvider.GetAllThemes());
-        foreach (var theme in _themes)
+        _themes.AddRange(await _apiProvider.GetThemes());
+        for (int i = 0; i < _themes.Count; i++)
         {
-            ThemeList.Items.Add(theme);
+            var theme = _themes[i];
+            ThemeList.Items.Add(theme, theme.Enabled);
         }
     }
 
     private async void UpdateAllThemes(object sender, EventArgs e)
     {
         var themes = new List<ThemeResponseWithFlag>();
-        foreach (ThemeResponseWithFlag theme in ThemeList.Items)
+        var list = (System.Collections.IList)ThemeList.Items;
+        for (int i = 0; i < list.Count; i++)
         {
+            var theme = list[i] as ThemeResponseWithFlag ?? new ThemeResponseWithFlag();
+
+            if (ThemeList.GetItemCheckState(i) == CheckState.Checked)
+            {
+                theme.Enabled = true;
+            }
+            else
+            {
+                theme.Enabled = false;
+            }
             themes.Add(theme);
         }
         await _apiProvider.UpdateThemes(themes);
-    }
-
-    private void ThemeList_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
     }
 }

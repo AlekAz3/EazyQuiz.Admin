@@ -32,6 +32,7 @@ partial class MainPanel
         OpenAddQuestion = new Button();
         OpenAddTheme = new Button();
         button1 = new Button();
+        FeedbackButton = new Button();
         SuspendLayout();
         // 
         // OpenUsersQuestion
@@ -78,11 +79,23 @@ partial class MainPanel
         button1.UseVisualStyleBackColor = true;
         button1.Click += UpdateThemesButton;
         // 
+        // FeedbackButton
+        // 
+        FeedbackButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        FeedbackButton.Location = new Point(12, 228);
+        FeedbackButton.Name = "FeedbackButton";
+        FeedbackButton.Size = new Size(436, 48);
+        FeedbackButton.TabIndex = 4;
+        FeedbackButton.Text = "Обратная связь";
+        FeedbackButton.UseVisualStyleBackColor = true;
+        FeedbackButton.Click += FeedbackPanelOpen;
+        // 
         // MainPanel
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(467, 242);
+        ClientSize = new Size(467, 287);
+        Controls.Add(FeedbackButton);
         Controls.Add(button1);
         Controls.Add(OpenAddTheme);
         Controls.Add(OpenAddQuestion);
@@ -99,4 +112,5 @@ partial class MainPanel
     private Button OpenAddQuestion;
     private Button OpenAddTheme;
     private Button button1;
+    private Button FeedbackButton;
 }

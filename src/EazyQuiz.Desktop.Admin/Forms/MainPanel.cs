@@ -53,6 +53,11 @@ public partial class MainPanel : Form
         var form = _formFactory.Create<ThemeUpdate>();
         form.Open();
     }
+    private void FeedbackPanelOpen(object sender, EventArgs e)
+    {
+        var form = _formFactory.Create<UsersFeedback>();
+        form.Open();
+    }
 
     /// <summary>
     /// Закрытие формы
