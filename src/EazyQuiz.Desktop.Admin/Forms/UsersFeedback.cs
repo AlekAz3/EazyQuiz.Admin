@@ -77,6 +77,7 @@ public partial class UsersFeedback : Form
             Status = status
         };
         await _apiProvider.UpdateFeedbackStatus(updatedFeedback);
+        await RefrashFeedbackList();
     }
 
     private async void ChangeList(object sender, EventArgs e)
