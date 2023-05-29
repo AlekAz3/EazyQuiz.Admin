@@ -70,6 +70,7 @@ partial class AddNewTheme
         Controls.Add(AddThemeButton);
         Controls.Add(label1);
         Controls.Add(textBox1);
+        MaximizeBox = false;
         Name = "AddNewTheme";
         Text = "Добавление новой темы";
         ResumeLayout(false);

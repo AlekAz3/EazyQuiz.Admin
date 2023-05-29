@@ -10,16 +10,16 @@ public partial class LogIn : Form
     /// <inheritdoc cref="ApiProvider/>
     private readonly ApiProvider _apiProvider;
 
-    /// <inheritdoc cref="UserToken/>
-    private readonly UserToken _userToken;
+    /// <inheritdoc cref="CurrentUser"/>
+    private readonly CurrentUser _user;
 
     /// <inheritdoc cref="IFormFactory/>
     private readonly IFormFactory _formFactory;
 
-    public LogIn(ApiProvider apiProvider, UserToken userToken, IFormFactory formFactory)
+    public LogIn(ApiProvider apiProvider, CurrentUser user, IFormFactory formFactory)
     {
         _apiProvider = apiProvider;
-        _userToken = userToken;
+        _user = user;
         _formFactory = formFactory;
         InitializeComponent();
     }
@@ -48,10 +48,9 @@ public partial class LogIn : Form
             MessageBox.Show("Есть пустые поля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
+        _user.SetUser(await _apiProvider.Authtenticate(username, password));
 
-        _userToken.User = await _apiProvider.Authtenticate(username, password);
-
-        if (_userToken.User is null)
+        if (_user.IsNull())
         {
             MessageBox.Show("Пользователь не найден или у вас нет прав администратора", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;

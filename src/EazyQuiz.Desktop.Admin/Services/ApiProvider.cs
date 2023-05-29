@@ -17,8 +17,8 @@ public class ApiProvider : IDisposable
     /// <inheritdoc cref="IConfiguration"/>
     private readonly IConfiguration _config;
 
-    /// <inheritdoc cref="UserToken"/>
-    private readonly UserToken _user;
+    /// <inheritdoc cref="CurrentUser"/>
+    private readonly CurrentUser _user;
 
     /// <inheritdoc cref="HttpClient"/>
     private readonly HttpClient _client;
@@ -28,7 +28,7 @@ public class ApiProvider : IDisposable
     /// </summary>
     private readonly string? _baseAdress;
 
-    public ApiProvider(IConfiguration config, UserToken user)
+    public ApiProvider(IConfiguration config, CurrentUser user)
     {
         _config = config;
         _user = user;
@@ -159,7 +159,7 @@ public class ApiProvider : IDisposable
             Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
         };
         request.Headers.TryAddWithoutValidation("Accept", "application/json");
-        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.GetToken()}");
 
         var response = await _client.SendAsync(request);
     }
@@ -189,7 +189,7 @@ public class ApiProvider : IDisposable
             RequestUri = new Uri(uri),
         };
         request.Headers.TryAddWithoutValidation("Accept", "application/json");
-        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.GetToken()}");
 
         var response = await _client.SendAsync(request);
 
@@ -211,24 +211,9 @@ public class ApiProvider : IDisposable
             Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
         };
         request.Headers.TryAddWithoutValidation("Accept", "application/json");
-        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.GetToken()}");
 
         var response = await _client.SendAsync(request);
-    }
-
-    public async Task<IReadOnlyCollection<ThemeResponse>> GetThemes()
-    {
-        var request = new HttpRequestMessage
-        {
-            Method = HttpMethod.Get,
-            RequestUri = new Uri($"{_baseAdress}/api/Themes"),
-        };
-        request.Headers.TryAddWithoutValidation("Accept", "application/json");
-        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
-
-        var response = await _client.SendAsync(request);
-
-        return await response.Content.ReadFromJsonAsync<List<ThemeResponse>>() ?? new List<ThemeResponse>();
     }
 
     public async Task SendNewTheme(string text)
@@ -242,7 +227,78 @@ public class ApiProvider : IDisposable
             Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
         };
         request.Headers.TryAddWithoutValidation("Accept", "application/json");
-        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.User.Token}");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.GetToken()}");
+
+        var response = await _client.SendAsync(request);
+    }
+
+    internal async Task<IReadOnlyCollection<ThemeResponseWithFlag>> GetThemes()
+    {
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri($"{_baseAdress}/api/Themes/all"),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.GetToken()}");
+
+        var response = await _client.SendAsync(request);
+
+        return await response.Content.ReadFromJsonAsync<List<ThemeResponseWithFlag>>() ?? new List<ThemeResponseWithFlag>();
+
+    }
+
+    public async Task UpdateThemes(IReadOnlyCollection<ThemeResponseWithFlag> themes)
+    {
+        string json = JsonSerializer.Serialize(themes);
+
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Put,
+            RequestUri = new Uri($"{_baseAdress}/api/Themes"),
+            Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.GetToken()}");
+
+        var response = await _client.SendAsync(request);
+    }
+
+    internal async Task<IReadOnlyCollection<FeedbackResponse>> GetFeedbacks(string status)
+    {
+
+        var query = new Dictionary<string, string?>
+        {
+            ["status"] = status
+        };
+        string uri = QueryHelpers.AddQueryString($"{_baseAdress}/api/Feedback", query);
+
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri(uri),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.GetToken()}");
+
+        var response = await _client.SendAsync(request);
+
+        return await response.Content.ReadFromJsonAsync<List<FeedbackResponse>>() ?? new List<FeedbackResponse>();
+
+    }
+
+    internal async Task UpdateFeedbackStatus(FeedbackUpdateDTO updatedFeedback)
+    {
+        string json = JsonSerializer.Serialize(updatedFeedback);
+
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Put,
+            RequestUri = new Uri($"{_baseAdress}/api/Feedback"),
+            Content = new StringContent(json, Encoding.UTF8, MediaTypeNames.Application.Json),
+        };
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_user.GetToken()}");
 
         var response = await _client.SendAsync(request);
     }

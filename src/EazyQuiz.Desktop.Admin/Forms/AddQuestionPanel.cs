@@ -20,7 +20,7 @@ public partial class AddQuestionPanel : Form
     /// <summary>
     /// Коллекция тем 
     /// </summary>
-    private IReadOnlyCollection<ThemeResponse> Themes { get; set; } = new List<ThemeResponse>();
+    private IReadOnlyCollection<ThemeResponseWithFlag> Themes { get; set; } = new List<ThemeResponseWithFlag>();
 
     public AddQuestionPanel(ApiProvider apiProvider, IFormFactory formFactory)
     {
@@ -52,7 +52,7 @@ public partial class AddQuestionPanel : Form
         var question = new QuestionInputDTO()
         {
             Text = QuestionInput.Text,
-            ThemeId = ((ThemeResponse)themesList.SelectedItem).Id,
+            ThemeId = ((ThemeResponseWithFlag)themesList.SelectedItem).Id,
             Answers = new List<AnswerInputDTO>()
             {
                 new AnswerInputDTO()
@@ -122,9 +122,8 @@ public partial class AddQuestionPanel : Form
     private async Task RefrashThemes()
     {
         Themes = await _apiProvider.GetThemes();
-        themesList.Items.Clear();
-        themesList.DisplayMember = nameof(ThemeResponse.Name);
-        themesList.ValueMember = nameof(ThemeResponse.Id);
+        themesList.Items.Clear();;
+        themesList.ValueMember = nameof(ThemeResponseWithFlag.Id);
         foreach (var item in Themes)
         {
             themesList.Items.Add(item);
