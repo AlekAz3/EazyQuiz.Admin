@@ -123,7 +123,6 @@ public partial class AddQuestionPanel : Form
     {
         Themes = await _apiProvider.GetThemes();
         themesList.Items.Clear();;
-        themesList.ValueMember = nameof(ThemeResponseWithFlag.Id);
         foreach (var item in Themes)
         {
             themesList.Items.Add(item);
