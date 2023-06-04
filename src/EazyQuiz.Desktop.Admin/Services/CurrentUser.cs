@@ -36,6 +36,6 @@ public class CurrentUser
     /// <returns>JWT токен</returns>
     public string GetToken()
     {
-        return User.Token;
+        return User.Token.Jwt;
     }
 }
