@@ -24,10 +24,10 @@ public partial class UsersFeedback : Form
 
     private async void LoadFeedbacks(object sender, EventArgs e)
     {
-        await RefrashFeedbackList();
+       
     }
 
-    private async Task RefrashFeedbackList()
+    private async Task RefreshFeedbackList()
     {
         ListFeedbacks.Items.Clear();
         var status = StatusShow.Text.Trim();
@@ -77,11 +77,11 @@ public partial class UsersFeedback : Form
             Status = status
         };
         await _apiProvider.UpdateFeedbackStatus(updatedFeedback);
-        await RefrashFeedbackList();
+        await RefreshFeedbackList();
     }
 
     private async void ChangeList(object sender, EventArgs e)
     {
-        await RefrashFeedbackList();
+        await RefreshFeedbackList();
     }
 }

@@ -31,7 +31,6 @@ public partial class ManageUsersQuestionPanel : Form
     public void Open()
     {
         Show();
-        Task.Run(RefreshList);
     }
 
     /// <summary>
